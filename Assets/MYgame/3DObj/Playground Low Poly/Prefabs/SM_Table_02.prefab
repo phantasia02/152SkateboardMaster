@@ -57,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5698321535412031286
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ BoxCollider:
   m_GameObject: {fileID: 7908459327875329471}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.3336291, y: 0.40261698, z: 1.2786719}
   m_Center: {x: -0.00000059604645, y: 0.19225502, z: -0.0000024437904}
@@ -103,7 +105,7 @@ BoxCollider:
   m_GameObject: {fileID: 7908459327875329471}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.6901245, y: 0.24819183, z: 0.71467495}
   m_Center: {x: -0.10477829, y: 0.5262816, z: 0.016055167}
