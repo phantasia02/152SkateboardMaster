@@ -34,11 +34,6 @@ public class CPlayer : CActor
     //public CinemachineVirtualCamera PlayerWinLoseCamera { get { return m_PlayerWinLoseCamera; } }
 
     [SerializeField] Collider       m_SwordeCollider    = null;
-    [SerializeField] TrailRenderer  m_SwordeTrailRenderer = null;
-    [SerializeField] CStandPoint    m_StartStandPoint   = null;
-    public CStandPoint StartStandPoint { get { return m_StartStandPoint; } }
-
-    [SerializeField] CStandPoint    m_EndStandPoint     = null;
 
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
@@ -64,8 +59,6 @@ public class CPlayer : CActor
         //m_MyPlayerMemoryShare.m_PlayerNormalCamera  = m_PlayerNormalCamera;
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
         m_MyPlayerMemoryShare.m_MyPlayer            = this;
-        m_MyPlayerMemoryShare.m_SwordeCollider      = m_SwordeCollider;
-        m_MyPlayerMemoryShare.m_SwordeTrailRenderer = m_SwordeTrailRenderer;
         
 
         SetBaseMemoryShare();
@@ -87,8 +80,8 @@ public class CPlayer : CActor
     {
         base.Update();
 
-        if (m_MyGameManager.CurState == CGameManager.EState.ePlay || m_MyGameManager.CurState == CGameManager.EState.eReady)
-            InputUpdata();
+        //if (m_MyGameManager.CurState == CGameManager.EState.ePlay || m_MyGameManager.CurState == CGameManager.EState.eReady)
+        //    InputUpdata();
 
 
         //transform.Translate(new Vector3(0.0f, 0.0f, Time.deltaTime * 3.0f));

@@ -8,7 +8,6 @@ public class CActorMemoryShare : CMemoryShareBase
     public CActor       m_MyActor          = null;
     public int          m_Hp               = 10;
     public Vector3      m_DeathImpactDir   = Vector3.forward;
-    public Renderer     m_RendererMesh     = null;
 
 };
 
@@ -19,7 +18,6 @@ public abstract class CActor : CMovableBase
     //  abstract public EMovableType MyMovableType();
     protected CActorMemoryShare m_MyActorMemoryShare = null;
     [SerializeField] Transform m_DummyRef = null;
-    [SerializeField] Renderer m_RendererMesh = null;
     public Transform DummyRef { get { return m_DummyRef; } }
 
     public virtual int TargetMask() { return 0; }
@@ -45,7 +43,6 @@ public abstract class CActor : CMovableBase
     protected override void Start()
     {
         base.Start();
-        m_MyActorMemoryShare.m_RendererMesh = m_RendererMesh;
     }
 
     public bool SetTarget(CActor target)
@@ -80,45 +77,7 @@ public abstract class CActor : CMovableBase
             m_MyActorMemoryShare.m_AllChildCollider[i].gameObject.layer = 0;
     }
 
-
-    public CActor GetNextTarget()
-    {
-        const int CMaxint = 8;
-        Collider[] lTempCollider = null;
-        float lTempRingDis = 2.0f;
-        float lTempOldRingDis = lTempRingDis;
-
-        int i = 0;
-        for (i = 0; i < CMaxint; i++)
-        {
-            lTempCollider = Physics.OverlapSphere(this.transform.position, lTempRingDis, TargetMask());
-            if (lTempCollider.Length != 0)
-                break;
-
-            lTempOldRingDis = lTempRingDis;
-            lTempRingDis *= 2.0f;
-        }
-
-        if (i == CMaxint)
-            return null;
-
-        if (i <= 2)
-            return lTempCollider[0].GetComponentInParent<CActor>();
-
-        lTempRingDis -= lTempOldRingDis;
-        float lTempAddDis = lTempOldRingDis / 4.0f;
-
-        for (i = 0; i < 8; i++)
-        {
-            lTempCollider = Physics.OverlapSphere(this.transform.position, lTempRingDis, TargetMask());
-            if (lTempCollider.Length != 0)
-                break;
-
-            lTempRingDis += lTempAddDis;
-        }
-
-        return lTempCollider[0].GetComponentInParent<CActor>();
-    }
+    
 
 
 }

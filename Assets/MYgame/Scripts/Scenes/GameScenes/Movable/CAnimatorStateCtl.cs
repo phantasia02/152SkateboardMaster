@@ -121,8 +121,8 @@ public class CAnimatorStateCtl : MonoBehaviour
 
             for (int i = 0; i < m_AllAnimatorData.Length; i++)
             {
-                for (int x = 0; x < m_AllAnimatorData[i].Length; x++)
-                    InitAnimatorData(ref m_AllAnimatorData[i][x]);
+                //for (int x = 0; x < m_AllAnimatorData[i].Length; x++)
+                //    InitAnimatorData(ref m_AllAnimatorData[i][x]);
 
                 m_StateIndividualIndex[i] = 0;
             }
@@ -291,6 +291,11 @@ public class CAnimatorStateCtl : MonoBehaviour
 
         //if (lTempAnimatorData.m_flagName.Length != 0)
         //    m_ThisAnimator.SetInteger(lTempAnimatorData.m_flagName, iCurIdelIndex);
+    }
+
+    public void SetFloat(string floatName, float number)
+    {
+        m_ThisAnimator.SetFloat(floatName, number);
     }
 
     public void SetCurState(EState SetState, int index = -1)
