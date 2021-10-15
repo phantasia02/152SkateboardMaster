@@ -38,7 +38,7 @@ public class CPlayer : CActor
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
 
-
+    int m_MoveingHash = 0;
  
 
     protected override void AddInitState()
@@ -59,7 +59,8 @@ public class CPlayer : CActor
         //m_MyPlayerMemoryShare.m_PlayerNormalCamera  = m_PlayerNormalCamera;
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
         m_MyPlayerMemoryShare.m_MyPlayer            = this;
-        
+
+        m_MoveingHash = Animator.StringToHash("MoveVal");
 
         SetBaseMemoryShare();
 
