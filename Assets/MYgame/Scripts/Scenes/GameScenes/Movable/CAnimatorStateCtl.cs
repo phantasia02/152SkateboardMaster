@@ -293,9 +293,14 @@ public class CAnimatorStateCtl : MonoBehaviour
         //    m_ThisAnimator.SetInteger(lTempAnimatorData.m_flagName, iCurIdelIndex);
     }
 
-    public void SetFloat(string floatName, float number)
+    public void SetFloat(string floatName, float fnumber)
     {
-        m_ThisAnimator.SetFloat(floatName, number);
+        m_ThisAnimator.SetFloat(floatName, fnumber);
+    }
+
+    public void SetFloat(int iStringHash, float fnumber)
+    {
+        m_ThisAnimator.SetFloat(iStringHash, fnumber);
     }
 
     public void SetCurState(EState SetState, int index = -1)

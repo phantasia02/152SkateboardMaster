@@ -8,15 +8,13 @@ public class CPlayerMemoryShare : CMemoryShareBase
 {
     public bool                     m_bDown                 = false;
     public Vector3                  m_OldMouseDownPos       = Vector3.zero;
-    public CinemachineVirtualCamera m_PlayerNormalCamera    = null;
-    public CinemachineVirtualCamera m_PlayerWinLoseCamera   = null;
     public Vector3                  m_OldMouseDragDirNormal = Vector3.zero;
     public CPlayer                  m_MyPlayer              = null;
     public Vector3[]                m_AllPathPoint          = new Vector3[8];
     public int                      m_CurStandPointindex    = 0;
     public Vector3                  m_TargetStandPoint      = Vector3.zero;
     public Collider                 m_SwordeCollider        = null;
-    public TrailRenderer            m_SwordeTrailRenderer   = null;
+   // public float                    m_        = null;
 };
 
 public class CPlayer : CActor
@@ -43,8 +41,8 @@ public class CPlayer : CActor
 
     protected override void AddInitState()
     {
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(= new CJumpStatePlayer(this);
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eHit] .AllThisState.Add(= new CHitStatePlayer(this);
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
@@ -82,7 +80,7 @@ public class CPlayer : CActor
         base.Update();
 
         //if (m_MyGameManager.CurState == CGameManager.EState.ePlay || m_MyGameManager.CurState == CGameManager.EState.eReady)
-        //    InputUpdata();
+            InputUpdata();
 
 
         //transform.Translate(new Vector3(0.0f, 0.0f, Time.deltaTime * 3.0f));
@@ -91,6 +89,8 @@ public class CPlayer : CActor
         //if (lTempGameSceneWindow && lTempGameSceneWindow.GetShow())
         //    lTempGameSceneWindow.SetBouncingBedCount(m_MyGameManager.GetFloorBouncingBedBoxCount(m_MyMemoryShare.m_FloorNumber));
     }
+
+    //public void update
 
 
     public override void InputUpdata()
