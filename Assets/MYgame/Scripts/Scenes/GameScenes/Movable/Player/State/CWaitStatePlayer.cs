@@ -14,7 +14,7 @@ public class CWaitStatePlayer : CPlayerStateBase
     protected override void InState()
     {
         SetAnimationState(CAnimatorStateCtl.EState.eIdle);
-
+        m_MyPlayerMemoryShare.m_MyMovable.SetMoveBuff(CMovableBase.ESpeedBuff.eDrag, 0.0f, true);
     }
 
     protected override void updataState()

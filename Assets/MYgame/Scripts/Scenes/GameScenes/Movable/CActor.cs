@@ -17,8 +17,6 @@ public abstract class CActor : CMovableBase
     //public Transform MyFloorStartPoint { get { return m_MyFloorStartPoint; } }
     //  abstract public EMovableType MyMovableType();
     protected CActorMemoryShare m_MyActorMemoryShare = null;
-    [SerializeField] Transform m_DummyRef = null;
-    public Transform DummyRef { get { return m_DummyRef; } }
 
     public virtual int TargetMask() { return 0; }
     public virtual int TargetIndex() { return 0; }

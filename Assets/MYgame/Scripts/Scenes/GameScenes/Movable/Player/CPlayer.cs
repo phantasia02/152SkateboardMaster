@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using Dreamteck.Splines;
+
 
 public class CPlayerMemoryShare : CMemoryShareBase
 {
@@ -14,7 +16,8 @@ public class CPlayerMemoryShare : CMemoryShareBase
     public int                      m_CurStandPointindex    = 0;
     public Vector3                  m_TargetStandPoint      = Vector3.zero;
     public Collider                 m_SwordeCollider        = null;
-   // public float                    m_        = null;
+    public SplineFollower           m_PlayerFollwer         = null;
+    // public float                    m_        = null;
 };
 
 public class CPlayer : CActor
@@ -25,13 +28,13 @@ public class CPlayer : CActor
 
     protected CPlayerMemoryShare m_MyPlayerMemoryShare = null;
 
-    //[SerializeField] CinemachineVirtualCamera m_PlayerNormalCamera = null;
-    //public CinemachineVirtualCamera PlayerNormalFollowObj { get { return m_PlayerNormalCamera; } }
+    // ==================== SerializeField ===========================================
 
-    //[SerializeField] CinemachineVirtualCamera m_PlayerWinLoseCamera = null;
-    //public CinemachineVirtualCamera PlayerWinLoseCamera { get { return m_PlayerWinLoseCamera; } }
 
-    [SerializeField] Collider       m_SwordeCollider    = null;
+    [SerializeField] protected SplineFollower m_PlayerFollwer = null;
+
+    // ==================== SerializeField ===========================================
+
 
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
@@ -57,6 +60,7 @@ public class CPlayer : CActor
         //m_MyPlayerMemoryShare.m_PlayerNormalCamera  = m_PlayerNormalCamera;
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
         m_MyPlayerMemoryShare.m_MyPlayer            = this;
+        m_MyPlayerMemoryShare.m_PlayerFollwer       = this.GetComponent<SplineFollower>();
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
 
@@ -152,6 +156,12 @@ public class CPlayer : CActor
             m_MyPlayerMemoryShare.m_bDown = false;
             m_MyPlayerMemoryShare.m_OldMouseDownPos = Vector3.zero;
         }
+    }
+
+    public override void UpdateCurSpeed()
+    {
+        base.UpdateCurSpeed();
+        m_MyPlayerMemoryShare.m_PlayerFollwer.followSpeed = m_MyMemoryShare.m_TargetTotleSpeed;
     }
 
 
