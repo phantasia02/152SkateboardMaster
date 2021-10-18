@@ -17,6 +17,15 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] GameObject m_ShowObj       = null;
     [SerializeField] Button m_ResetButton       = null;
     [SerializeField] Button m_GoButton          = null;
+    [SerializeField] Image  m_MoveBar           = null;
+
+    [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
+
+    private void OnValidate()
+    {
+        // ApplyColor();
+        SetVal(m_InitAnimationVal);
+    }
 
     public void SetTemptextPos(Vector3 pos)
     {
@@ -68,5 +77,17 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         {
             m_GoButton.gameObject.SetActive(false);
         }
+    }
+
+    public void SetVal(float Val)
+    {
+        Val = Mathf.Clamp(Val, 0.0f, 1.0f);
+
+        Val -= 0.5f;
+        Val *= 2.0f;
+
+        Vector3 lTempPosition = m_MoveBar.rectTransform.anchoredPosition;
+        lTempPosition.y = Val * 140.0f;
+        m_MoveBar.rectTransform.anchoredPosition = lTempPosition;
     }
 }
