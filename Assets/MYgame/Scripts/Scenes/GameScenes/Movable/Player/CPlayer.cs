@@ -4,19 +4,20 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using Dreamteck.Splines;
-
+using UniRx;
 
 public class CPlayerMemoryShare : CMemoryShareBase
 {
-    public bool                     m_bDown                 = false;
-    public Vector3                  m_OldMouseDownPos       = Vector3.zero;
-    public Vector3                  m_OldMouseDragDirNormal = Vector3.zero;
-    public CPlayer                  m_MyPlayer              = null;
-    public Vector3[]                m_AllPathPoint          = new Vector3[8];
-    public int                      m_CurStandPointindex    = 0;
-    public Vector3                  m_TargetStandPoint      = Vector3.zero;
-    public Collider                 m_SwordeCollider        = null;
-    public SplineFollower           m_PlayerFollwer         = null;
+    public bool                             m_bDown                 = false;
+    public Vector3                          m_OldMouseDownPos       = Vector3.zero;
+    public Vector3                          m_OldMouseDragDirNormal = Vector3.zero;
+    public CPlayer                          m_MyPlayer              = null;
+    public Vector3[]                        m_AllPathPoint          = new Vector3[8];
+    public int                              m_CurStandPointindex    = 0;
+    public Vector3                          m_TargetStandPoint      = Vector3.zero;
+    public Collider                         m_SwordeCollider        = null;
+    public SplineFollower                   m_PlayerFollwer         = null;
+    public UniRx.ReactiveProperty<float>    m_AnimationVal          = new ReactiveProperty<float>(0.5f);
     // public float                    m_        = null;
 };
 
@@ -35,7 +36,14 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-
+    public float AnimationVal
+    {
+        set {
+                float lTempValue = Mathf.Clamp(value, 0.0f, 1.0f);
+                m_MyPlayerMemoryShare.m_AnimationVal.Value = lTempValue;
+            }
+        get { return m_MyPlayerMemoryShare.m_AnimationVal.Value; }
+    }
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
 
@@ -76,6 +84,9 @@ public class CPlayer : CActor
         base.Start();
         SetCurState(StaticGlobalDel.EMovableState.eWait);
 
+        UpdateAnimationVal().Subscribe(_ => {
+            m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
+        }).AddTo(this.gameObject);
     }
 
     // Update is called once per frame
@@ -164,10 +175,31 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_PlayerFollwer.followSpeed = m_MyMemoryShare.m_TargetTotleSpeed;
     }
 
-
-
     public override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
     }
+
+
+    // ===================== UniRx ======================
+    //Subject<int> m_PlayerRogueCountEvent;
+    //Subject<float> m_PlayerRogueSpeedEvent;
+
+    //public void OnUpdatePlayerRogueCount(int value)
+    //{
+    //    if (m_PlayerRogueCountEvent != null)
+    //        m_PlayerRogueCountEvent.OnNext(value);
+    //}
+
+    //public void OnUpdatePlayerRogueSpeed(float value)
+    //{
+    //    if (m_PlayerRogueSpeedEvent != null)
+    //        m_PlayerRogueSpeedEvent.OnNext(value);
+    //}
+
+    public UniRx.ReactiveProperty<float> UpdateAnimationVal()
+    {
+        return m_MyPlayerMemoryShare.m_AnimationVal ?? (m_MyPlayerMemoryShare.m_AnimationVal = new ReactiveProperty<float>(0.5f));
+    }
+    // ===================== UniRx ======================
 }
