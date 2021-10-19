@@ -1196,6 +1196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PostColor: 3
+  m_AnimationTag:
+  - YellowPos
+  - PinkPos
+  - BluePos
+  - GreenPos
+  - OrangePos
 --- !u!1 &3164491880179172511
 GameObject:
   m_ObjectHideFlags: 0

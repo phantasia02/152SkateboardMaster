@@ -33,8 +33,7 @@ public class CPlayer : CActor
     // ==================== SerializeField ===========================================
 
     [SerializeField] protected SplineFollower m_PlayerFollwer = null;
-    [VarRename(new string[] { "Top", "Middle", "Down" })]
-    [SerializeField] protected CGGameSceneData.EPostColor[] m_UIPostColor = new CGGameSceneData.EPostColor[3];
+
 
     // ==================== SerializeField ===========================================
 
@@ -73,7 +72,7 @@ public class CPlayer : CActor
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
         m_MyPlayerMemoryShare.m_MyPlayer            = this;
         m_MyPlayerMemoryShare.m_PlayerFollwer       = this.GetComponent<SplineFollower>();
-        m_MyPlayerMemoryShare.m_UIPostColor         = m_UIPostColor;
+        m_MyPlayerMemoryShare.m_UIPostColor         = m_MyGameManager.UIPostColor;
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
 

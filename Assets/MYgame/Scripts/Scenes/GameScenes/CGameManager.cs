@@ -50,12 +50,13 @@ public class CGameManager : MonoBehaviour
     [SerializeField] GameObject m_PlayerResultCamera = null;
     public GameObject PlayerResultCamera { get { return m_PlayerResultCamera; } }
 
-    [SerializeField] GameObject m_ResultEndCamera = null;
-    public GameObject ResultEndCamera { get { return m_ResultEndCamera; } }
-
     [SerializeField] CinemachineTargetGroup m_CinemachineTargetGroup = null;
     public CinemachineTargetGroup CinemachineTargetGroup { get { return m_CinemachineTargetGroup; } }
-    
+
+    [VarRename(new string[] { "Top", "Middle", "Down" })]
+    [SerializeField] protected CGGameSceneData.EPostColor[] m_UIPostColor = new CGGameSceneData.EPostColor[3];
+    public CGGameSceneData.EPostColor[] UIPostColor { get { return m_UIPostColor; } }
+
 
     private EState m_eCurState = EState.eReady;
     public EState CurState { get { return m_eCurState; } }
@@ -73,6 +74,8 @@ public class CGameManager : MonoBehaviour
         float lTempNewHWRatio = ((float)Screen.height / (float)Screen.width);
         m_HalfScreenWidth = (StaticGlobalDel.g_fcbaseWidth / 2.0f) * (lTempNewHWRatio / HWRatioPototype);
 
+        m_Player = this.GetComponentInChildren<CPlayer>();
+
         m_MyResultUI = gameObject.GetComponentInChildren<ResultUI>();
     }
 
@@ -84,6 +87,8 @@ public class CGameManager : MonoBehaviour
             GameObject lTempCameraObj = GameObject.FindGameObjectWithTag("MainCamera");
             if (lTempCameraObj != null)
                 m_Camera = lTempCameraObj.GetComponent<Camera>();
+
+            
 
             if (m_Camera != null )
             {

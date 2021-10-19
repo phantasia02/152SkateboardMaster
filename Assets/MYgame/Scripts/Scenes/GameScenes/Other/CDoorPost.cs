@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class CDoorPost : CGameObjBas
 {
@@ -12,6 +14,8 @@ public class CDoorPost : CGameObjBas
 
     [SerializeField] protected CGGameSceneData.EPostColor m_PostColor = CGGameSceneData.EPostColor.eYellowPost;
     public CGGameSceneData.EPostColor PostColor { get { return m_PostColor; } }
+
+    [SerializeField] protected string[] m_AnimationTag = new string[(int)CGGameSceneData.EPostColor.eMax];
     // ==================== SerializeField ===========================================
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
@@ -22,25 +26,31 @@ public class CDoorPost : CGameObjBas
         m_AnimatorPost = this.GetComponentInChildren<Animator>();
         m_MyOutline = this.GetComponentInChildren<Outline>();
 
-        m_AnimatorPost.SetTrigger(CAnimatorNamtTag);
-        float lTemppostVal = 0.0f;
+        string lTempTag = m_AnimationTag[(int)m_PostColor];
 
-        if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
-            lTemppostVal = 1.0f;
-        else if (m_PostColor == CGGameSceneData.EPostColor.eGreenPost)
-            lTemppostVal = 0.5f;
-        else if (m_PostColor == CGGameSceneData.EPostColor.eOrangePost)
-            lTemppostVal = 0.0f;
+        m_AnimatorPost.SetTrigger(lTempTag);
+        //float lTemppostVal = 0.0f;
 
-        m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
+        //if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
+        //    lTemppostVal = 1.0f;
+        //else if (m_PostColor == CGGameSceneData.EPostColor.eGreenPost)
+        //    lTemppostVal = 0.5f;
+        //else if (m_PostColor == CGGameSceneData.EPostColor.eOrangePost)
+        //    lTemppostVal = 0.0f;
+
+        //m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
-       // m_AnimatorPost.enabled = false;
+        
         Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
         m_MyOutline.SetOutlineColor = lTempColor;
+        UniRx.Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => 
+        {
+            m_AnimatorPost.enabled = false;
+        });
     }
 
     // Update is called once per frame

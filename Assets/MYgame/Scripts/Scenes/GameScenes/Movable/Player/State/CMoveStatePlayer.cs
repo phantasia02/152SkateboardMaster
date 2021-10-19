@@ -47,8 +47,8 @@ public class CMoveStatePlayer : CPlayerStateBase
 
             if (lTempPostColor != lTempDoorPost.PostColor)
             {
-                m_MyPlayerMemoryShare.m_PlayerFollwer.follow = false;
-                m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eDeath;
+                //m_MyPlayerMemoryShare.m_PlayerFollwer.follow = false;
+                //m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eDeath;
             }
            // Debug.Log("CMoveStatePlayer OnTriggerEnter aaaaaaaaaaaaaaaa");
         }
