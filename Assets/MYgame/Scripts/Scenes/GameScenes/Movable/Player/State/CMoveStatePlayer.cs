@@ -36,4 +36,12 @@ public class CMoveStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_MyPlayer.MouseDrag();
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == StaticGlobalDel.TagDoorPost)
+        {
+            Debug.Log("CMoveStatePlayer OnTriggerEnter aaaaaaaaaaaaaaaa");
+        }
+    }
 }

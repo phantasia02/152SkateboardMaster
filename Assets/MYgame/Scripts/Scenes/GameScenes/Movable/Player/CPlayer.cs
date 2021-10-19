@@ -202,20 +202,6 @@ public class CPlayer : CActor
     }
 
     // ===================== UniRx ======================
-    //Subject<int> m_PlayerRogueCountEvent;
-    //Subject<float> m_PlayerRogueSpeedEvent;
-
-    //public void OnUpdatePlayerRogueCount(int value)
-    //{
-    //    if (m_PlayerRogueCountEvent != null)
-    //        m_PlayerRogueCountEvent.OnNext(value);
-    //}
-
-    //public void OnUpdatePlayerRogueSpeed(float value)
-    //{
-    //    if (m_PlayerRogueSpeedEvent != null)
-    //        m_PlayerRogueSpeedEvent.OnNext(value);
-    //}
 
     public UniRx.ReactiveProperty<float> UpdateAnimationVal()
     {
