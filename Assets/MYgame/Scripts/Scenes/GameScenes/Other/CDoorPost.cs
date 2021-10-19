@@ -10,9 +10,8 @@ public class CDoorPost : CGameObjBas
 
     // ==================== SerializeField ===========================================
 
-
     [SerializeField] protected CGGameSceneData.EPostColor m_PostColor = CGGameSceneData.EPostColor.eYellowPost;
-
+    public CGGameSceneData.EPostColor PostColor { get { return m_PostColor; } }
     // ==================== SerializeField ===========================================
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
@@ -22,11 +21,7 @@ public class CDoorPost : CGameObjBas
     {
         m_AnimatorPost = this.GetComponentInChildren<Animator>();
         m_MyOutline = this.GetComponentInChildren<Outline>();
-    }
 
-    // Start is called before the first frame update
-    protected override void Start()
-    {
         m_AnimatorPost.SetTrigger(CAnimatorNamtTag);
         float lTemppostVal = 0.0f;
 
@@ -38,7 +33,12 @@ public class CDoorPost : CGameObjBas
             lTemppostVal = 0.0f;
 
         m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
+    }
 
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+       // m_AnimatorPost.enabled = false;
         Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
         m_MyOutline.SetOutlineColor = lTempColor;
     }
@@ -47,12 +47,5 @@ public class CDoorPost : CGameObjBas
     protected override void Update()
     {
         
-    }
-
-    public static Color PostColorToColor(CGGameSceneData.EPostColor EIndexColor)
-    {
-       
-
-        return new Color();
     }
 }

@@ -25,4 +25,18 @@ public abstract class CPlayerStateBase : CMovableStatePototype
            // m_MyPlayerMemoryShare.m_MyPlayer.UpdateCurSpeed();
         }
     }
+
+    public CGGameSceneData.EPostColor CurPostColor()
+    {
+        CGGameSceneData.EPostColor lReturnPostColor = CGGameSceneData.EPostColor.eGreenPost;
+
+        if (m_MyPlayerMemoryShare.m_AnimationVal.Value > 0.66f)
+            lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[0];
+        else if (m_MyPlayerMemoryShare.m_AnimationVal.Value < 0.33f)
+            lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[2];
+        else
+            lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[1];
+
+        return lReturnPostColor;
+    }
 }

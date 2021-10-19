@@ -15436,6 +15436,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5420355270370977874, guid: 1e6f53840b826504bb87dc5175dab207, type: 3}
+      propertyPath: m_UIPostColor.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420355270370977874, guid: 1e6f53840b826504bb87dc5175dab207, type: 3}
+      propertyPath: m_UIPostColor.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5420355270370977875, guid: 1e6f53840b826504bb87dc5175dab207, type: 3}
       propertyPath: _spline
       value: 

@@ -41,7 +41,16 @@ public class CMoveStatePlayer : CPlayerStateBase
     {
         if (other.tag == StaticGlobalDel.TagDoorPost)
         {
-            Debug.Log("CMoveStatePlayer OnTriggerEnter aaaaaaaaaaaaaaaa");
+            CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
+
+            CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
+
+            if (lTempPostColor != lTempDoorPost.PostColor)
+            {
+                m_MyPlayerMemoryShare.m_PlayerFollwer.follow = false;
+                m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eDeath;
+            }
+           // Debug.Log("CMoveStatePlayer OnTriggerEnter aaaaaaaaaaaaaaaa");
         }
     }
 }

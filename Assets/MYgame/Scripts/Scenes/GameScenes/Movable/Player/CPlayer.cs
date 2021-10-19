@@ -18,6 +18,7 @@ public class CPlayerMemoryShare : CMemoryShareBase
     public Collider                         m_SwordeCollider        = null;
     public SplineFollower                   m_PlayerFollwer         = null;
     public UniRx.ReactiveProperty<float>    m_AnimationVal          = new ReactiveProperty<float>(0.5f);
+    public CGGameSceneData.EPostColor[]     m_UIPostColor           = null;
     // public float                    m_        = null;
 };
 
@@ -31,12 +32,13 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-
     [SerializeField] protected SplineFollower m_PlayerFollwer = null;
+    [VarRename(new string[] { "Top", "Middle", "Down" })]
+    [SerializeField] protected CGGameSceneData.EPostColor[] m_UIPostColor = new CGGameSceneData.EPostColor[3];
 
     // ==================== SerializeField ===========================================
 
-   // protected float m_MoveRatio = 1.0f;
+
 
     public float AnimationVal
     {
@@ -71,6 +73,7 @@ public class CPlayer : CActor
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
         m_MyPlayerMemoryShare.m_MyPlayer            = this;
         m_MyPlayerMemoryShare.m_PlayerFollwer       = this.GetComponent<SplineFollower>();
+        m_MyPlayerMemoryShare.m_UIPostColor         = m_UIPostColor;
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
 
