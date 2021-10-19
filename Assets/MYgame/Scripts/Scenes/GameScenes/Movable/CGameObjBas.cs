@@ -7,12 +7,7 @@ public abstract class CGameObjBas : MonoBehaviour
     public enum EObjType
     {
         eMovable            = 0,
-        eDoor               = 1,
-        eDoorGroup          = 2,
-        eCarCreatePos       = 3,
-        eAllCarCreatePos    = 4,
-        eEnemyGroup         = 5,
-        ePlayerRogueGroup   = 6,
+        eDoorPost           = 1,
         eMax
     }
 

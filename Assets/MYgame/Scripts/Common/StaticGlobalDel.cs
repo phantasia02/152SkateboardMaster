@@ -38,6 +38,8 @@ public static class StaticGlobalDel
         eMax
     }
 
+
+
     public const string TagDoorGroup            = "DoorGroup";
     public const string TagCarEnd               = "CarEnd";
     public const string TagCarCollider          = "TagCarCollider";

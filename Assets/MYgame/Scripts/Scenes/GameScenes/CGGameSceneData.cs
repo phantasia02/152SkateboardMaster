@@ -41,13 +41,20 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
         eMax,
     };
 
+    public enum EPostColor
+    {
+        eYellowPost     = 0,
+        ePinkPost       = 1,
+        eBluePost       = 2,
+        eGreenPost      = 3,
+        eOrangePost     = 4,
+        eMax
+    }
+
     [SerializeField] public GameObject[]    m_AllFX                 = null;
     [SerializeField] public GameObject[]    m_AllOtherObj           = null;
-    [SerializeField] public GameObject[]    m_AllCar                = null;
-    [SerializeField] public GameObject[]    m_AllArms               = null;
+    [SerializeField] public Color[]         m_AllPostColor          = null;
 
-    public CObjPool<GameObject>[] m_AllArmsPool = new CObjPool<GameObject>[(int)EArmsType.eMax];
-    int m_CurNewArmsCount = 0;
 
     private void Awake()
     {
@@ -61,40 +68,6 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
         //}
     }
 
-    public GameObject GetArms(EArmsType lType)
-    {
-        int lTempindex = (int)lType;
-        m_CurNewArmsCount = lTempindex;
-        GameObject lTempObj = m_AllArmsPool[lTempindex].AddObj();
-        lTempObj.SetActive(true);
+    public Color PostColorToColor(CGGameSceneData.EPostColor EIndexColor){return m_AllPostColor[(int)EIndexColor];}
 
-        return lTempObj;
-    }
-
-    public void RemoveArmsType(EArmsType lTempType, GameObject lTempObj)
-    {
-        if (lTempType == EArmsType.eMax)
-            return;
-
-        int lTempindex = (int)lTempType;
-
-        m_AllArmsPool[lTempindex].RemoveObj(lTempObj);
-    }
-
-    public GameObject NewArms()
-    {
-        CGGameSceneData lTempCGGameSceneData = CGGameSceneData.SharedInstance;
-        GameObject lTempObj = Instantiate(m_AllArms[m_CurNewArmsCount], this.transform);
-        lTempObj.transform.localPosition = Vector3.zero;
-        //Rigidbody lTempRigidbody = m_MyPlayerRogueMemoryShare.m_MyArms.AddComponent<Rigidbody>();
-        //lTempRigidbody.AddForceAtPosition(lTempV3 * Random.Range(80.0f, 130.0f), lTemppointV3);
-        return lTempObj;
-    }
-
-    public void RemoveArms(GameObject Arms)
-    {
-        Arms.transform.parent = this.transform;
-        Arms.transform.localPosition = Vector3.zero;
-        Arms.SetActive(false);
-    }
 }
