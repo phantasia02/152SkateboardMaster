@@ -36,6 +36,8 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
+   // protected float m_MoveRatio = 1.0f;
+
     public float AnimationVal
     {
         set {
@@ -75,7 +77,7 @@ public class CPlayer : CActor
         SetBaseMemoryShare();
 
         m_MaxMoveDirSize = Screen.width > Screen.height ? (float)Screen.width : (float)Screen.height;
-        m_MaxMoveDirSize = m_MaxMoveDirSize / 10.0f;
+        m_MaxMoveDirSize = m_MaxMoveDirSize / 5.0f;
     }
 
     // Start is called before the first frame update
@@ -180,6 +182,24 @@ public class CPlayer : CActor
         base.OnTriggerEnter(other);
     }
 
+    public void MouseDrag()
+    {
+        //const float CfHalfWidth = 3.0f;
+      //  const float CfTotleWidth = CfHalfWidth * 2.0f;
+        float lTempMoveY = Input.mousePosition.y - m_MyPlayerMemoryShare.m_OldMouseDownPos.y;
+        float lTempMoveRatio = m_MaxMoveDirSize;
+
+        lTempMoveY = lTempMoveY / m_MaxMoveDirSize;
+
+        m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempMoveY;
+        CGameSceneWindow.SharedInstance.SetVal(m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal);
+
+        //Vector2 lTempOffset = MySplineFollower.motion.offset;
+        //lTempOffset.x += lTempMoveX * lTempMoveRatio;
+        //lTempOffset = Vector2.ClampMagnitude(lTempOffset, CfHalfWidth);
+
+        //MySplineFollower.motion.offset = lTempOffset;
+    }
 
     // ===================== UniRx ======================
     //Subject<int> m_PlayerRogueCountEvent;

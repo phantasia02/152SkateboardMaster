@@ -22,8 +22,8 @@ public class CMoveStatePlayer : CPlayerStateBase
 
     protected override void updataState()
     {
-        float lTempAddVal = Time.deltaTime * 0.5f;
-        m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempDown ? lTempAddVal : -lTempAddVal;
+        //float lTempAddVal = Time.deltaTime * 0.5f;
+        //m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempDown ? lTempAddVal : -lTempAddVal;
 
         UpdateSpeed();
     }
@@ -32,13 +32,8 @@ public class CMoveStatePlayer : CPlayerStateBase
     {
     }
 
-    public override void MouseDown()
+    public override void MouseDrag()
     {
-        lTempDown = true;
-    }
-
-    public override void MouseUp()
-    {
-        lTempDown = false;
+        m_MyPlayerMemoryShare.m_MyPlayer.MouseDrag();
     }
 }
