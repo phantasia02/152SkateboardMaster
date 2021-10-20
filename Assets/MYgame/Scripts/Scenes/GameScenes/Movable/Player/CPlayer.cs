@@ -19,6 +19,7 @@ public class CPlayerMemoryShare : CMemoryShareBase
     public SplineFollower                   m_PlayerFollwer         = null;
     public UniRx.ReactiveProperty<float>    m_AnimationVal          = new ReactiveProperty<float>(0.5f);
     public CGGameSceneData.EPostColor[]     m_UIPostColor           = null;
+    public float                            m_AddSpeedSecond        = 5.0f;
     // public float                    m_        = null;
 };
 
@@ -57,6 +58,7 @@ public class CPlayer : CActor
     {
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitStatePlayer(this));
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(= new CJumpStatePlayer(this);
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eHit] .AllThisState.Add(= new CHitStatePlayer(this);
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));

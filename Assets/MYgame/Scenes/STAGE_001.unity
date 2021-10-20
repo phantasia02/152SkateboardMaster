@@ -3164,14 +3164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdae253a4b0d9004596c15bd2ec763c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: 15c2db7d3ba57994f9403c6791031d6d, type: 2}
-  outlineScaleFactor: -1.1
-  outlineColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
-  outlineRenderer: {fileID: 0}
 --- !u!65 &384007558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15531,6 +15523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 558242142}
     m_Modifications:
+    - target: {fileID: 3164491879231258435, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3164491880100626726, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
       propertyPath: m_Name
       value: DoorPost
@@ -15672,5 +15668,9 @@ PrefabInstance:
       propertyPath: _spline
       value: 
       objectReference: {fileID: 449450198}
+    - target: {fileID: 5420355270370977875, guid: 1e6f53840b826504bb87dc5175dab207, type: 3}
+      propertyPath: applyDirectionRotation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6f53840b826504bb87dc5175dab207, type: 3}

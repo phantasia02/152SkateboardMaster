@@ -6,8 +6,6 @@ public class CMoveStatePlayer : CPlayerStateBase
 {
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eMove; }
 
-    bool lTempDown = false;
-
     public CMoveStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
 
@@ -42,15 +40,10 @@ public class CMoveStatePlayer : CPlayerStateBase
         if (other.tag == StaticGlobalDel.TagDoorPost)
         {
             CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
-
             CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
 
             if (lTempPostColor != lTempDoorPost.PostColor)
-            {
-                //m_MyPlayerMemoryShare.m_PlayerFollwer.follow = false;
-                //m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eDeath;
-            }
-           // Debug.Log("CMoveStatePlayer OnTriggerEnter aaaaaaaaaaaaaaaa");
+                m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
         }
     }
 }
