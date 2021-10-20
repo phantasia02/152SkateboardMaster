@@ -8,6 +8,7 @@ public class CActorMemoryShare : CMemoryShareBase
     public CActor       m_MyActor          = null;
     public int          m_Hp               = 10;
     public Vector3      m_DeathImpactDir   = Vector3.forward;
+    public GameObject   m_AllObj           = null;
 
 };
 
@@ -17,6 +18,12 @@ public abstract class CActor : CMovableBase
     //public Transform MyFloorStartPoint { get { return m_MyFloorStartPoint; } }
     //  abstract public EMovableType MyMovableType();
     protected CActorMemoryShare m_MyActorMemoryShare = null;
+
+    // ==================== SerializeField ===========================================
+
+    [SerializeField] protected GameObject m_AllObj = null;
+
+    // ==================== SerializeField ===========================================
 
     public virtual int TargetMask() { return 0; }
     public virtual int TargetIndex() { return 0; }
@@ -41,6 +48,14 @@ public abstract class CActor : CMovableBase
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void CreateMemoryShare()
+    {
+        m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
+        m_MyActorMemoryShare.m_AllObj = m_AllObj;
+
+        SetBaseMemoryShare();
     }
 
     public bool SetTarget(CActor target)

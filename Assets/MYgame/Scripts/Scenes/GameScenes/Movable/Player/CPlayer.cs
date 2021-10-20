@@ -6,7 +6,7 @@ using DG.Tweening;
 using Dreamteck.Splines;
 using UniRx;
 
-public class CPlayerMemoryShare : CMemoryShareBase
+public class CPlayerMemoryShare : CActorMemoryShare
 {
     public bool                             m_bDown                 = false;
     public Vector3                          m_OldMouseDownPos       = Vector3.zero;
@@ -33,7 +33,7 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-    [SerializeField] protected SplineFollower m_PlayerFollwer = null;
+  //  [SerializeField] protected SplineFollower m_PlayerFollwer = null;
 
 
     // ==================== SerializeField ===========================================
@@ -77,6 +77,8 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_UIPostColor         = m_MyGameManager.UIPostColor;
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
+
+        base.CreateMemoryShare();
 
         SetBaseMemoryShare();
 
