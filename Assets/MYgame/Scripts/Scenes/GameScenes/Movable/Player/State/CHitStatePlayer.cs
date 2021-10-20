@@ -15,7 +15,7 @@ public class CHitStatePlayer : CPlayerStateBase
     protected override void InState()
     {
         m_MyPlayerMemoryShare.m_PlayerFollwer.direction = Dreamteck.Splines.Spline.Direction.Backward;
-        m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
+     //   m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
         m_MyPlayerMemoryShare.m_MyPlayer.SetMoveBuff(CMovableBase.ESpeedBuff.eHit, 0.0f);
         m_MyPlayerMemoryShare.m_AddSpeedSecond = 10.0f;
 
@@ -39,9 +39,9 @@ public class CHitStatePlayer : CPlayerStateBase
     protected override void OutState()
     {
         m_MyPlayerMemoryShare.m_PlayerFollwer.direction = Dreamteck.Splines.Spline.Direction.Forward;
-        m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = true;
+      //  m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = true;
 
-        m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
+        m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), 1.0f);
         //  m_MyPlayerMemoryShare.m_AddSpeedSecond = 5.0f;
     }
 

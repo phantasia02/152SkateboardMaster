@@ -28,6 +28,12 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         }
     }
 
+    public void ConfirmDoorNextState(CDoorPost lsetDoorPost)
+    {
+        if (lsetDoorPost.NextState != StateType())
+            m_MyPlayerMemoryShare.m_MyMovable.ChangState = lsetDoorPost.NextState;
+    }
+
     public CGGameSceneData.EPostColor CurPostColor()
     {
         CGGameSceneData.EPostColor lReturnPostColor = CGGameSceneData.EPostColor.eGreenPost;
@@ -40,5 +46,16 @@ public abstract class CPlayerStateBase : CMovableStatePototype
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[1];
 
         return lReturnPostColor;
+    }
+
+    public void TriggerEnterDoor(Collider other)
+    {
+        CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
+        CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
+
+        if (lTempPostColor != lTempDoorPost.PostColor)
+            m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
+        else
+            ConfirmDoorNextState(lTempDoorPost);
     }
 }

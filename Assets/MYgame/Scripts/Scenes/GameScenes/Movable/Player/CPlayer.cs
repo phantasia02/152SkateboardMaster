@@ -58,7 +58,12 @@ public class CPlayer : CActor
     {
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
+
         m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitJumpStatePlayer(this));
+
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpStatePlayer(this));
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(= new CJumpStatePlayer(this);
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eHit] .AllThisState.Add(= new CHitStatePlayer(this);
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));

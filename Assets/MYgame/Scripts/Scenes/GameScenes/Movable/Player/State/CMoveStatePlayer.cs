@@ -13,7 +13,9 @@ public class CMoveStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+        m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eHit, 0);
         SetAnimationState(CAnimatorStateCtl.EState.eRun);
+        m_MyPlayerMemoryShare.m_AddSpeedSecond = 20.0f;
         m_MyPlayerMemoryShare.m_PlayerFollwer.follow = true;
         m_MyPlayerMemoryShare.m_MyMovable.ResetMoveBuff();
     }
@@ -38,12 +40,6 @@ public class CMoveStatePlayer : CPlayerStateBase
     public override void OnTriggerEnter(Collider other)
     {
         if (other.tag == StaticGlobalDel.TagDoorPost)
-        {
-            CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
-            CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
-
-            if (lTempPostColor != lTempDoorPost.PostColor)
-                m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
-        }
+            TriggerEnterDoor(other);
     }
 }

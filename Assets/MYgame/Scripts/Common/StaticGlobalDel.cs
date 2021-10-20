@@ -22,23 +22,18 @@ public static class StaticGlobalDel
         eMove           = 3,
         eAtk            = 4,
         eJump           = 5,
-        eHit            = 6,
-        eWin            = 7,
-        eDeath          = 8,
+        eJumpDown       = 6,
+        eHit            = 7,
+        eWin            = 8,
+        eDeath          = 9,
         eMax
     }
 
     public enum ELayerIndex
     {
-        ePlayerRogue    = 6,
-        eCarCollider    = 7,
-        eEndPlayerActor = 8,
-        eEndEnemyActor  = 9,
-        eFloor          = 10,
+        eFloor          = 6,
         eMax
     }
-
-
 
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";
@@ -51,7 +46,7 @@ public static class StaticGlobalDel
     //public const string TagTrafficLightGroup    = "TagTrafficLightGroup";
     //public const string TagFloor                = "TagFloor";
 
-    public const int g_PlayerRogueMask      = 1 << (int)ELayerIndex.ePlayerRogue;
+    public const int g_FloorMask = 1 << (int)ELayerIndex.eFloor;
 
     
     public const float  g_fcbaseWidth                   = 1080.0f;

@@ -15,6 +15,9 @@ public class CDoorPost : CGameObjBas
     [SerializeField] protected CGGameSceneData.EPostColor m_PostColor = CGGameSceneData.EPostColor.eYellowPost;
     public CGGameSceneData.EPostColor PostColor { get { return m_PostColor; } }
 
+    [SerializeField] protected StaticGlobalDel.EMovableState m_NextState = StaticGlobalDel.EMovableState.eMove;
+    public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
+
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
     protected Animator m_AnimatorPost = null;
