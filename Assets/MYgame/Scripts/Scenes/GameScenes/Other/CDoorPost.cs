@@ -18,6 +18,8 @@ public class CDoorPost : CGameObjBas
     [SerializeField] protected StaticGlobalDel.EMovableState m_NextState = StaticGlobalDel.EMovableState.eMove;
     public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
 
+    [SerializeField] protected Renderer m_MyObjRenderer = null;
+
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
     protected Animator m_AnimatorPost = null;
@@ -27,8 +29,8 @@ public class CDoorPost : CGameObjBas
     protected override void Awake()
     {
         m_AnimatorPost = this.GetComponentInChildren<Animator>();
-       // m_MyOutline = this.GetComponentInChildren<Outline>();
-
+        // m_MyOutline = this.GetComponentInChildren<Outline>();
+        m_MyObjRenderer.gameObject.layer = CGGameSceneData.SharedInstance.m_AllLayerOutlineColor[(int)m_PostColor];
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
         m_AnimatorPost.SetTrigger(lTempTag);
@@ -48,7 +50,7 @@ public class CDoorPost : CGameObjBas
     protected override void Start()
     {
         
-        Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
+        //Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
         //m_MyOutline.SetOutlineColor = lTempColor;
         UniRx.Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => 
         {

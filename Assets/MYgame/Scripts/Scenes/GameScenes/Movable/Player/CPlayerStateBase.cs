@@ -44,9 +44,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     {
         CGGameSceneData.EPostColor lReturnPostColor = CGGameSceneData.EPostColor.eGreenPost;
 
-        if (m_MyPlayerMemoryShare.m_AnimationVal.Value > 0.66f)
+        if (m_MyPlayerMemoryShare.m_AnimationVal.Value > 0.67f)
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[0];
-        else if (m_MyPlayerMemoryShare.m_AnimationVal.Value < 0.33f)
+        else if (m_MyPlayerMemoryShare.m_AnimationVal.Value < 0.32f)
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[2];
         else
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[1];

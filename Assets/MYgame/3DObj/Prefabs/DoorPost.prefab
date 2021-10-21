@@ -524,8 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786718536818463265}
   - component: {fileID: 5600803589620490604}
-  - component: {fileID: 8498917196092515270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Basketball_player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,24 +658,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.046170354, y: 0.034536123, z: 0.06324628}
     m_Extent: {x: 1.4523247, y: 0.48392844, z: 0.9567778}
   m_DirtyAABB: 0
---- !u!114 &8498917196092515270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415609869269036342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &1463018338289957116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PostColor: 3
   m_NextState: 5
+  m_MyObjRenderer: {fileID: 5600803589620490604}
 --- !u!1 &3164491880179172511
 GameObject:
   m_ObjectHideFlags: 0

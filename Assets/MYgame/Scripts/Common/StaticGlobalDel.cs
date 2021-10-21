@@ -32,8 +32,14 @@ public static class StaticGlobalDel
     public enum ELayerIndex
     {
         eFloor          = 6,
+        eYellow         = 7,
+        ePink           = 8,
+        eBlue           = 9,
+        eGreen          = 10,
+        eOrange         = 11,
         eMax
     }
+
 
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";
