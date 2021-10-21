@@ -19,10 +19,11 @@ public class CHitStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_MyPlayer.SetMoveBuff(CMovableBase.ESpeedBuff.eHit, 0.0f);
         m_MyPlayerMemoryShare.m_AddSpeedSecond = 10.0f;
 
-        Sequence TempSequence = DOTween.Sequence();
-        TempSequence.Append(m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(1.0f, 0.25f));
-        TempSequence.Append(m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(0.0f, 0.25f));
-        TempSequence.PlayForward();
+        m_MyPlayerMemoryShare.m_MyRigidbody.AddForce(Vector3.up * Random.Range(150.0f, 200.0f));
+        //Sequence TempSequence = DOTween.Sequence();
+        //TempSequence.Append(m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(1.0f, 0.25f));
+        //TempSequence.Append(m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(0.0f, 0.25f));
+        //TempSequence.PlayForward();
 
         m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, Random.Range(-120.0f, 120.0f), 0.0f), 0.5f);
     }

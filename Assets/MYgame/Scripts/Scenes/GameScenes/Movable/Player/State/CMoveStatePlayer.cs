@@ -5,7 +5,7 @@ using UnityEngine;
 public class CMoveStatePlayer : CPlayerStateBase
 {
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eMove; }
-
+   
     public CMoveStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
 
@@ -18,6 +18,8 @@ public class CMoveStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_AddSpeedSecond = 20.0f;
         m_MyPlayerMemoryShare.m_PlayerFollwer.follow = true;
         m_MyPlayerMemoryShare.m_MyMovable.ResetMoveBuff();
+
+        base.InState();
     }
 
     protected override void updataState()
@@ -39,7 +41,10 @@ public class CMoveStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagDoorPost)
+        if (other.tag == StaticGlobalDel.TagDoorPost && !m_OneTouch)
+        {
             TriggerEnterDoor(other);
+            m_OneTouch = true;
+        }
     }
 }

@@ -8,18 +8,22 @@ using UniRx;
 
 public class CPlayerMemoryShare : CActorMemoryShare
 {
-    public bool                             m_bDown                 = false;
-    public Vector3                          m_OldMouseDownPos       = Vector3.zero;
-    public Vector3                          m_OldMouseDragDirNormal = Vector3.zero;
-    public CPlayer                          m_MyPlayer              = null;
-    public Vector3[]                        m_AllPathPoint          = new Vector3[8];
-    public int                              m_CurStandPointindex    = 0;
-    public Vector3                          m_TargetStandPoint      = Vector3.zero;
-    public Collider                         m_SwordeCollider        = null;
-    public SplineFollower                   m_PlayerFollwer         = null;
-    public UniRx.ReactiveProperty<float>    m_AnimationVal          = new ReactiveProperty<float>(0.5f);
-    public CGGameSceneData.EPostColor[]     m_UIPostColor           = null;
-    public float                            m_AddSpeedSecond        = 5.0f;
+    public bool                             m_bDown                     = false;
+    public Vector3                          m_OldMouseDownPos           = Vector3.zero;
+    public Vector3                          m_OldMouseDragDirNormal     = Vector3.zero;
+    public CPlayer                          m_MyPlayer                  = null;
+    public Vector3[]                        m_AllPathPoint              = new Vector3[8];
+    public int                              m_CurStandPointindex        = 0;
+    public Vector3                          m_TargetStandPoint          = Vector3.zero;
+    public Collider                         m_SwordeCollider            = null;
+    public SplineFollower                   m_PlayerFollwer             = null;
+    public UniRx.ReactiveProperty<float>    m_AnimationVal              = new ReactiveProperty<float>(0.5f);
+    public CGGameSceneData.EPostColor[]     m_UIPostColor               = null;
+    public float                            m_AddSpeedSecond            = 5.0f;
+    public Transform                        m_GSkateboard               = null;
+    public Transform                        m_AnkleLSkateboard          = null;
+    public Vector3                          m_AnkleLSkateboardLocalpos  = Vector3.zero;
+    public Quaternion                       m_AnkleLSkateboardRotate    = Quaternion.identity;
     // public float                    m_        = null;
 };
 
@@ -33,7 +37,8 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-  //  [SerializeField] protected SplineFollower m_PlayerFollwer = null;
+    [SerializeField] protected Transform m_GSkateboard = null;
+    [SerializeField] protected Transform m_AnkleLSkateboard = null;
 
 
     // ==================== SerializeField ===========================================
@@ -63,7 +68,7 @@ public class CPlayer : CActor
         m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitJumpStatePlayer(this));
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpDownStatePlayer(this));
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(= new CJumpStatePlayer(this);
         ////m_AllState[(int)StaticGlobalDel.EMovableState.eHit] .AllThisState.Add(= new CHitStatePlayer(this);
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
@@ -77,9 +82,13 @@ public class CPlayer : CActor
 
         //m_MyPlayerMemoryShare.m_PlayerNormalCamera  = m_PlayerNormalCamera;
         //m_MyPlayerMemoryShare.m_PlayerWinLoseCamera = m_PlayerWinLoseCamera;
-        m_MyPlayerMemoryShare.m_MyPlayer            = this;
-        m_MyPlayerMemoryShare.m_PlayerFollwer       = this.GetComponent<SplineFollower>();
-        m_MyPlayerMemoryShare.m_UIPostColor         = m_MyGameManager.UIPostColor;
+        m_MyPlayerMemoryShare.m_MyPlayer                    = this;
+        m_MyPlayerMemoryShare.m_PlayerFollwer               = this.GetComponent<SplineFollower>();
+        m_MyPlayerMemoryShare.m_UIPostColor                 = m_MyGameManager.UIPostColor;
+        m_MyPlayerMemoryShare.m_GSkateboard                 = m_GSkateboard;
+        m_MyPlayerMemoryShare.m_AnkleLSkateboard            = m_AnkleLSkateboard;
+        m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos    = m_AnkleLSkateboard.localPosition;
+        m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate      = m_AnkleLSkateboard.rotation;
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
 

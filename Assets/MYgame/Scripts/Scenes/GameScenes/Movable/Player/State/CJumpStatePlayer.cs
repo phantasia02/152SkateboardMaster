@@ -18,8 +18,13 @@ public class CJumpStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
         //m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
 
-        m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase( Ease.InSine);
-       // m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, Random.Range(-120.0f, 120.0f), 0.0f), 0.5f);
+        m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase( Ease.OutQuad);
+
+
+
+
+        Time.timeScale = 0.1f;
+        base.InState();
     }
 
     protected override void updataState()
@@ -29,6 +34,7 @@ public class CJumpStatePlayer : CPlayerStateBase
     protected override void OutState()
     {
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
+        Time.timeScale = 1.0f;
         //m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = true;
     }
 
@@ -36,12 +42,15 @@ public class CJumpStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_MyPlayer.MouseDrag();
 
-        m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase(Ease.InSine);
+       // m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase(Ease.InSine);
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagDoorPost)
+        if (other.tag == StaticGlobalDel.TagDoorPost && !m_OneTouch)
+        {
             TriggerEnterDoor(other);
+            m_OneTouch = true;
+        }
     }
 }

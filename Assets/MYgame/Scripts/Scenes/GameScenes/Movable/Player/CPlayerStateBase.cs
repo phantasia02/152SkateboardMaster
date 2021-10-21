@@ -5,10 +5,16 @@ using UnityEngine;
 public abstract class CPlayerStateBase : CMovableStatePototype
 {
     protected CPlayerMemoryShare m_MyPlayerMemoryShare = null;
+    protected bool m_OneTouch = false;
 
     public CPlayerStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
         m_MyPlayerMemoryShare = (CPlayerMemoryShare)m_MyMemoryShare;
+    }
+
+    protected override void InState()
+    {
+        m_OneTouch = false;
     }
 
 
