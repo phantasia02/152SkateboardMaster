@@ -18,6 +18,8 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Button m_ResetButton       = null;
     [SerializeField] Button m_GoButton          = null;
     [SerializeField] Image  m_MoveBar           = null;
+    [SerializeField] Image  m_MapProgress       = null;
+    [SerializeField] Image  m_FeverBar          = null;
 
     [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
 
@@ -48,10 +50,10 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 
@@ -89,5 +91,19 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         Vector3 lTempPosition = m_MoveBar.rectTransform.anchoredPosition;
         lTempPosition.y = Val * 140.0f;
         m_MoveBar.rectTransform.anchoredPosition = lTempPosition;
+    }
+
+    public void SetMapProgress(float Val)
+    {
+        Val = Mathf.Clamp(Val, 0.0f, 1.0f);
+
+        m_MapProgress.fillAmount = Val;
+    }
+
+    public void SetFeverBar(float Val)
+    {
+        Val = Mathf.Clamp(Val, 0.0f, 1.0f);
+
+        m_FeverBar.fillAmount = Val;
     }
 }

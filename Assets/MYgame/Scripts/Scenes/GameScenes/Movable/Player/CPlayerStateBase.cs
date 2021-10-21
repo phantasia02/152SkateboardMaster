@@ -64,4 +64,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         else
             ConfirmDoorNextState(lTempDoorPost);
     }
+
+    public void UpdateUIMapBar()
+    {
+
+    }
 }
