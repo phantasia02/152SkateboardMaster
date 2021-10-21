@@ -87,8 +87,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_UIPostColor                 = m_MyGameManager.UIPostColor;
         m_MyPlayerMemoryShare.m_GSkateboard                 = m_GSkateboard;
         m_MyPlayerMemoryShare.m_AnkleLSkateboard            = m_AnkleLSkateboard;
-        m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos    = m_AnkleLSkateboard.localPosition;
-        m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate      = m_AnkleLSkateboard.rotation;
+
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
 
@@ -109,6 +108,9 @@ public class CPlayer : CActor
         UpdateAnimationVal().Subscribe(_ => {
             m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
         }).AddTo(this.gameObject);
+
+        m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos = m_AnkleLSkateboard.localPosition;
+        m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate = m_AnkleLSkateboard.rotation;
     }
 
     // Update is called once per frame
