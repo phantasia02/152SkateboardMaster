@@ -27,7 +27,7 @@ public class CDoorPost : CGameObjBas
     protected override void Awake()
     {
         m_AnimatorPost = this.GetComponentInChildren<Animator>();
-        m_MyOutline = this.GetComponentInChildren<Outline>();
+       // m_MyOutline = this.GetComponentInChildren<Outline>();
 
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
@@ -49,7 +49,7 @@ public class CDoorPost : CGameObjBas
     {
         
         Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
-        m_MyOutline.SetOutlineColor = lTempColor;
+        //m_MyOutline.SetOutlineColor = lTempColor;
         UniRx.Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => 
         {
             m_AnimatorPost.enabled = false;

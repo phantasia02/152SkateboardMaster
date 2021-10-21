@@ -15,10 +15,10 @@ public class CHitStatePlayer : CPlayerStateBase
     protected override void InState()
     {
         m_MyPlayerMemoryShare.m_PlayerFollwer.direction = Dreamteck.Splines.Spline.Direction.Backward;
-     //   m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
         m_MyPlayerMemoryShare.m_MyPlayer.SetMoveBuff(CMovableBase.ESpeedBuff.eHit, 0.0f);
         m_MyPlayerMemoryShare.m_AddSpeedSecond = 10.0f;
 
+     //   m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
         m_MyPlayerMemoryShare.m_MyRigidbody.AddForce(Vector3.up * Random.Range(150.0f, 200.0f));
         //Sequence TempSequence = DOTween.Sequence();
         //TempSequence.Append(m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(1.0f, 0.25f));
