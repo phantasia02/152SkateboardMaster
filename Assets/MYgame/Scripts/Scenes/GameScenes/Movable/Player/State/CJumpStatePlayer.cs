@@ -47,10 +47,11 @@ public class CJumpStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagDoorPost && !m_OneTouch)
+        if (other.tag == StaticGlobalDel.TagDoorPost)
         {
+           
             TriggerEnterDoor(other);
-            m_OneTouch = true;
+           // m_OneTouch = true;
         }
     }
 }

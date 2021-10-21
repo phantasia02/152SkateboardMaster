@@ -22,8 +22,10 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public float                            m_AddSpeedSecond            = 5.0f;
     public Transform                        m_GSkateboard               = null;
     public Transform                        m_AnkleLSkateboard          = null;
+    public Transform                        m_BuffAnkleLSkateboard      = null;
     public Vector3                          m_AnkleLSkateboardLocalpos  = Vector3.zero;
     public Quaternion                       m_AnkleLSkateboardRotate    = Quaternion.identity;
+    public int                              m_BuffDoorInstanceID        = 0;
     // public float                    m_        = null;
 };
 
@@ -39,6 +41,7 @@ public class CPlayer : CActor
 
     [SerializeField] protected Transform m_GSkateboard = null;
     [SerializeField] protected Transform m_AnkleLSkateboard = null;
+    [SerializeField] protected Transform m_BuffAnkleLSkateboard = null;
 
 
     // ==================== SerializeField ===========================================
@@ -87,6 +90,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_UIPostColor                 = m_MyGameManager.UIPostColor;
         m_MyPlayerMemoryShare.m_GSkateboard                 = m_GSkateboard;
         m_MyPlayerMemoryShare.m_AnkleLSkateboard            = m_AnkleLSkateboard;
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard        = m_BuffAnkleLSkateboard;
 
 
         m_MoveingHash = Animator.StringToHash("MoveVal");

@@ -22,12 +22,18 @@ public class CJumpDownStatePlayer : CPlayerStateBase
         Vector3 lTempLocalpos = m_MyPlayerMemoryShare.m_AnkleLSkateboard.localPosition;
         Quaternion lTempDORotate = m_MyPlayerMemoryShare.m_AnkleLSkateboard.rotation;
 
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.gameObject.SetActive(true);
+        m_MyPlayerMemoryShare.m_AnkleLSkateboard.gameObject.SetActive(false);
+
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.position = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.position;
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.rotation = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.rotation;
+
         Sequence TempSequence = DOTween.Sequence();
         //TempSequence.AppendInterval(0.5f);
-        TempSequence.Append(m_MyPlayerMemoryShare.m_AnkleLSkateboard.DOLocalMoveX(2.0f, 1.0f).SetEase(Ease.Linear));
-        TempSequence.Join(m_MyPlayerMemoryShare.m_AnkleLSkateboard.DORotate(new Vector3(0.0f, Random.Range(0.0f, 360.0f), Random.Range(360.0f, 720.0f)), 1.0f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        TempSequence.Append(m_MyPlayerMemoryShare.m_AnkleLSkateboard.DOLocalMoveX(m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos.x, 1.0f).SetEase(Ease.Linear));
-        TempSequence.Join(m_MyPlayerMemoryShare.m_AnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.5f).SetEase(Ease.Linear));
+        TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(-2.0f, 0.5f).SetEase(Ease.Linear));
+        TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotate(new Vector3(0.0f, 360.0f, 360.0f), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos.x, 0.8f).SetEase(Ease.Linear));
+        TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.8f).SetEase(Ease.Linear));
         TempSequence.SetUpdate(true);
         TempSequence.PlayForward();
     }
@@ -38,6 +44,8 @@ public class CJumpDownStatePlayer : CPlayerStateBase
 
     protected override void OutState()
     {
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.gameObject.SetActive(false);
+        m_MyPlayerMemoryShare.m_AnkleLSkateboard.gameObject.SetActive(true);
     }
 
     public override void OnCollisionEnter(Collision collision)

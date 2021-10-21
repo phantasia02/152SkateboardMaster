@@ -6,6 +6,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 {
     protected CPlayerMemoryShare m_MyPlayerMemoryShare = null;
     protected bool m_OneTouch = false;
+    protected int m_BuffDoorInstanceID = 0;
 
     public CPlayerStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -44,9 +45,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     {
         CGGameSceneData.EPostColor lReturnPostColor = CGGameSceneData.EPostColor.eGreenPost;
 
-        if (m_MyPlayerMemoryShare.m_AnimationVal.Value > 0.67f)
+        if (m_MyPlayerMemoryShare.m_AnimationVal.Value > 0.66f)
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[0];
-        else if (m_MyPlayerMemoryShare.m_AnimationVal.Value < 0.32f)
+        else if (m_MyPlayerMemoryShare.m_AnimationVal.Value < 0.33f)
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[2];
         else
             lReturnPostColor = m_MyPlayerMemoryShare.m_UIPostColor[1];
@@ -56,13 +57,26 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 
     public void TriggerEnterDoor(Collider other)
     {
+
+
         CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
         CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
+        //Debug.Log($"===================================");
+        //Debug.Log($"lTempPostColor = {lTempPostColor}");
+        //Debug.Log($" lTempDoorPost.PostColor = { lTempDoorPost.PostColor}");
+        if (m_MyPlayerMemoryShare.m_BuffDoorInstanceID == lTempDoorPost.gameObject.GetInstanceID())
+            return;
+
+      //  Debug.Log($" m_MyPlayerMemoryShare.m_BuffDoorInstanceID = { m_MyPlayerMemoryShare.m_BuffDoorInstanceID}");
+        // other.gameObject.SetActive(false);
 
         if (lTempPostColor != lTempDoorPost.PostColor)
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
         else
+        {
             ConfirmDoorNextState(lTempDoorPost);
+            m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
+        }
     }
 
     public void UpdateUIMapBar()

@@ -43,6 +43,7 @@ public class CHitStatePlayer : CPlayerStateBase
       //  m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = true;
 
         m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), 1.0f);
+        m_MyPlayerMemoryShare.m_BuffDoorInstanceID = 0;
         //  m_MyPlayerMemoryShare.m_AddSpeedSecond = 5.0f;
     }
 

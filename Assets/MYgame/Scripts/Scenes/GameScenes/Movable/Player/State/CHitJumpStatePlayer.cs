@@ -36,8 +36,9 @@ public class CHitJumpStatePlayer : CPlayerStateBase
 
     protected override void OutState()
     {
-      //  m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
-       // m_MyPlayerMemoryShare.m_MyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        m_MyPlayerMemoryShare.m_BuffDoorInstanceID = 0;
+        //  m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
+        // m_MyPlayerMemoryShare.m_MyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public override void OnCollisionEnter(Collision collision)
