@@ -3327,8 +3327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllObj: {fileID: 5420355269136089587}
-  m_GSkateboard: {fileID: 551907805753993008}
-  m_AnkleLSkateboard: {fileID: 5420355270519530725}
+  m_GSkateboard: {fileID: 843106670577503611}
+  m_AnkleLSkateboard: {fileID: 843106670577503611}
 --- !u!114 &5420355270370977875
 MonoBehaviour:
   m_ObjectHideFlags: 0
