@@ -67,15 +67,21 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         if (m_MyPlayerMemoryShare.m_BuffDoorInstanceID == lTempDoorPost.gameObject.GetInstanceID())
             return;
 
-      //  Debug.Log($" m_MyPlayerMemoryShare.m_BuffDoorInstanceID = { m_MyPlayerMemoryShare.m_BuffDoorInstanceID}");
+        //  Debug.Log($" m_MyPlayerMemoryShare.m_BuffDoorInstanceID = { m_MyPlayerMemoryShare.m_BuffDoorInstanceID}");
         // other.gameObject.SetActive(false);
+        lTempDoorPost.CurTouch += 1;
 
         if (lTempPostColor != lTempDoorPost.PostColor)
+        {
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
+        }
         else
         {
             ConfirmDoorNextState(lTempDoorPost);
             m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
+
+            if (lTempDoorPost.TouchMaxCount == -1)
+                lTempDoorPost.ShowObj(false);
         }
     }
 

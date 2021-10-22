@@ -17,11 +17,9 @@ public class CJumpStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex( StaticGlobalDel.EMovableState.eHit, 1);
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
         //m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
-
+        //m_MyPlayerMemoryShare.m_MyMovable.transform.d
+        m_MyPlayerMemoryShare.m_MyMovable.transform.DOPause();
         m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase( Ease.OutQuad);
-
-
-
 
         Time.timeScale = 0.1f;
         base.InState();

@@ -36,6 +36,8 @@ public class CJumpDownStatePlayer : CPlayerStateBase
         TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.8f).SetEase(Ease.Linear));
         TempSequence.SetUpdate(true);
         TempSequence.PlayForward();
+
+        m_MyPlayerMemoryShare.m_isupdateAnimation = false;
     }
 
     protected override void updataState()
@@ -46,6 +48,9 @@ public class CJumpDownStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.gameObject.SetActive(false);
         m_MyPlayerMemoryShare.m_AnkleLSkateboard.gameObject.SetActive(true);
+
+        m_MyPlayerMemoryShare.m_isupdateAnimation = true;
+        m_MyPlayerMemoryShare.m_MyPlayer.UpdateAnimationChangVal();
     }
 
     public override void OnCollisionEnter(Collision collision)
@@ -55,10 +60,10 @@ public class CJumpDownStatePlayer : CPlayerStateBase
 
     }
 
-    //public override void MouseDrag()
-    //{
-    //    m_MyPlayerMemoryShare.m_MyPlayer.MouseDrag();
-    //}
+    public override void MouseDrag()
+    {
+        m_MyPlayerMemoryShare.m_MyPlayer.MouseDrag();
+    }
 
 
 }

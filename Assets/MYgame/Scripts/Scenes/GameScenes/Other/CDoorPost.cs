@@ -20,11 +20,29 @@ public class CDoorPost : CGameObjBas
 
     [SerializeField] protected Renderer m_MyObjRenderer = null;
 
+    [SerializeField] protected int m_TouchMaxCount = -1;
+    public int TouchMaxCount { get { return m_TouchMaxCount; } }
+
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
+    protected int m_CurTouch = 0;
+    public int CurTouch
+    {
+        set
+        {
+            m_CurTouch = value;
+            if (TouchMaxCount == -1)
+                return;
 
+            if (TouchMaxCount <= m_CurTouch)
+                ShowObj(false);
+        }
+        get { return m_CurTouch; }
+    }
+
+    
 
     protected override void Awake()
     {
@@ -62,5 +80,10 @@ public class CDoorPost : CGameObjBas
     protected override void Update()
     {
         
+    }
+
+    public void ShowObj(bool show)
+    {
+        this.gameObject.SetActive(show);
     }
 }

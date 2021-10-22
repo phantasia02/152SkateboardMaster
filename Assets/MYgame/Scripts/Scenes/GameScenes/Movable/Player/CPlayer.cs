@@ -26,6 +26,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public Vector3                          m_AnkleLSkateboardLocalpos  = Vector3.zero;
     public Quaternion                       m_AnkleLSkateboardRotate    = Quaternion.identity;
     public int                              m_BuffDoorInstanceID        = 0;
+    public bool                             m_isupdateAnimation         = true;
     // public float                    m_        = null;
 };
 
@@ -110,11 +111,17 @@ public class CPlayer : CActor
         SetCurState(StaticGlobalDel.EMovableState.eWait);
 
         UpdateAnimationVal().Subscribe(_ => {
-            m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
+            UpdateAnimationChangVal();
         }).AddTo(this.gameObject);
 
         m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos = m_AnkleLSkateboard.localPosition;
         m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate = m_AnkleLSkateboard.rotation;
+    }
+
+    public void UpdateAnimationChangVal()
+    {
+        if (m_MyPlayerMemoryShare.m_isupdateAnimation)
+            m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
     }
 
     // Update is called once per frame
@@ -216,6 +223,7 @@ public class CPlayer : CActor
         float lTempMoveRatio = m_MaxMoveDirSize;
 
         lTempMoveY = lTempMoveY / m_MaxMoveDirSize;
+
 
         m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempMoveY;
         CGameSceneWindow.SharedInstance.SetVal(m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal);
