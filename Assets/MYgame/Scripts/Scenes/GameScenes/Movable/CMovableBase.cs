@@ -227,6 +227,9 @@ public abstract class CMovableBase : CGameObjBas
                 case StaticGlobalDel.EMovableState.eDeath:
                     m_AllState[i].AllThisState.Add(new CDeathStateBase(this));
                     break;
+                case StaticGlobalDel.EMovableState.eFinish:
+                    m_AllState[i].AllThisState.Add(new CFinishStateBase(this));
+                    break;
             }
         }
 

@@ -14,6 +14,7 @@ public class CJumpDownStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+        m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eHit, 0);
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
         m_MyPlayerMemoryShare.m_MyRigidbody.AddForce(Vector3.up * 200.0f);
 
@@ -55,7 +56,14 @@ public class CJumpDownStatePlayer : CPlayerStateBase
     {
         if (collision.gameObject.layer == (int)StaticGlobalDel.ELayerIndex.eFloor)
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eMove;
+    }
 
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == StaticGlobalDel.TagDoorPost)
+        {
+            TriggerEnterDoor(other);
+        }
     }
 
     public override void MouseDrag()

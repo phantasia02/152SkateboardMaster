@@ -74,11 +74,9 @@ public class CPlayer : CActor
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNormalStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpDownStatePlayer(this));
-     //   m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpDownStatePlayer(this));
-        ////m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(= new CJumpStatePlayer(this);
-        ////m_AllState[(int)StaticGlobalDel.EMovableState.eHit] .AllThisState.Add(= new CHitStatePlayer(this);
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
+
+        m_AllState[(int)StaticGlobalDel.EMovableState.eFinish].AllThisState.Add(new CFinishStatePlayer(this));
+
     }
 
     protected override void CreateMemoryShare()
