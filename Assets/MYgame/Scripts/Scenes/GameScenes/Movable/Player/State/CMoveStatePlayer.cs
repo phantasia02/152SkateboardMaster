@@ -13,6 +13,7 @@ public class CMoveStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+        SetStateStyle( StaticGlobalDel.EStyle.eNormal);
         m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eHit, 0);
         SetAnimationState(CAnimatorStateCtl.EState.eRun);
         m_MyPlayerMemoryShare.m_AddSpeedSecond = 20.0f;
@@ -41,10 +42,10 @@ public class CMoveStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagDoorPost && !m_OneTouch)
+        if (other.tag == StaticGlobalDel.TagDoorPost)
         {
             TriggerEnterDoor(other);
-            m_OneTouch = true;
+          //  m_OneTouch = true;
         }
     }
 }

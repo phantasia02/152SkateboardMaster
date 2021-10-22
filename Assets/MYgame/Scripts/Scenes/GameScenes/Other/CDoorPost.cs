@@ -4,8 +4,17 @@ using UnityEngine;
 using UniRx;
 using System;
 
+[System.Serializable]
+public class CDataNext
+{
+    public StaticGlobalDel.EStyle           m_Style             = StaticGlobalDel.EStyle.eNormal;
+    public StaticGlobalDel.EMovableState    m_State             = StaticGlobalDel.EMovableState.eMove;
+}
+
 public class CDoorPost : CGameObjBas
 {
+
+
     public const string CAnimatorNamtTag = "MoveBlendTree";
 
     public override EObjType ObjType() { return EObjType.eDoorPost; }
@@ -15,13 +24,18 @@ public class CDoorPost : CGameObjBas
     [SerializeField] protected CGGameSceneData.EPostColor m_PostColor = CGGameSceneData.EPostColor.eYellowPost;
     public CGGameSceneData.EPostColor PostColor { get { return m_PostColor; } }
 
-    [SerializeField] protected StaticGlobalDel.EMovableState m_NextState = StaticGlobalDel.EMovableState.eMove;
-    public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
+    //[SerializeField] protected StaticGlobalDel.EMovableState m_NextState = StaticGlobalDel.EMovableState.eMove;
+    //public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
 
     [SerializeField] protected Renderer m_MyObjRenderer = null;
 
     [SerializeField] protected int m_TouchMaxCount = -1;
     public int TouchMaxCount { get { return m_TouchMaxCount; } }
+
+    //[SerializeField] protected EStyle m_NextStyle = StaticGlobalDel.EMovableState.eMove;
+    //public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
+    [SerializeField] protected CDataNext m_NextData;
+    public CDataNext NextData { get { return m_NextData; } }
 
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================

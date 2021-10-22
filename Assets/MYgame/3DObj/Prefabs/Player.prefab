@@ -185,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297435307598997832}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 124059531397566645}
@@ -238,6 +238,12 @@ MonoBehaviour:
   - m_flagName: MoveBlendTree
     m_AnimationName: MoveBlendTree
     m_AnimationStateName: MoveBlendTree
+    m_Speed: 1
+    m_AnimationClip: {fileID: 0}
+    m_AnimationTime: 0
+  - m_flagName: MoveSideways
+    m_AnimationName: MoveSideways
+    m_AnimationStateName: MoveSideways
     m_Speed: 1
     m_AnimationClip: {fileID: 0}
     m_AnimationTime: 0

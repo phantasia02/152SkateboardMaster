@@ -323,8 +323,11 @@ public abstract class CMovableBase : CGameObjBas
         if (m_AllState[(int)pamState].AllThisState[index] == null)
             return;
 
-
         int lTempOldIndex = m_AllState[(int)pamState].index;
+
+        if (lTempOldIndex == index)
+            return;
+
         m_AllState[(int)pamState].index = index;
 
         if (pamState == CurState)

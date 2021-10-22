@@ -40,6 +40,13 @@ public static class StaticGlobalDel
         eMax
     }
 
+    public enum EStyle
+    {
+        eNormal = 0,
+        eSlow = 1,
+        eMax
+    }
+
 
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";
@@ -62,7 +69,7 @@ public static class StaticGlobalDel
     public const float  g_fcbaseResolutionHWRatio       = g_fcbaseHeight / g_fcbaseWidth;
     public const float  g_TUA                           = Mathf.PI * 2.0f;
     // ============= Speed ====================
-    public const float g_DefMovableTotleSpeed = 20.0f;
+    public const float g_DefMovableTotleSpeed = 15.0f;
 
     public static GameObject NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype)
     {

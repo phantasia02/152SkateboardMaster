@@ -15,7 +15,7 @@ public class CJumpStatePlayer : CPlayerStateBase
     protected override void InState()
     {
         m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex( StaticGlobalDel.EMovableState.eHit, 1);
-        m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
+        OpenUseGravity(false);
         //m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
         //m_MyPlayerMemoryShare.m_MyMovable.transform.d
         m_MyPlayerMemoryShare.m_MyMovable.transform.DOPause();
@@ -31,7 +31,7 @@ public class CJumpStatePlayer : CPlayerStateBase
 
     protected override void OutState()
     {
-        m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
+        OpenUseGravity(true);
         Time.timeScale = 1.0f;
         //m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = true;
     }

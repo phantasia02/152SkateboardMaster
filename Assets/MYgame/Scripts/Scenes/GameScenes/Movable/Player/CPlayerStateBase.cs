@@ -37,8 +37,8 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 
     public void ConfirmDoorNextState(CDoorPost lsetDoorPost)
     {
-        if (lsetDoorPost.NextState != StateType())
-            m_MyPlayerMemoryShare.m_MyMovable.ChangState = lsetDoorPost.NextState;
+        if (lsetDoorPost.NextData.m_State != StateType())
+            m_MyPlayerMemoryShare.m_MyMovable.ChangState = lsetDoorPost.NextData.m_State;
     }
 
     public CGGameSceneData.EPostColor CurPostColor()
@@ -77,6 +77,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         }
         else
         {
+            SetStateStyle(lTempDoorPost.NextData.m_Style);
             ConfirmDoorNextState(lTempDoorPost);
             m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
 
@@ -88,5 +89,21 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     public void UpdateUIMapBar()
     {
 
+    }
+
+    public void OpenUseGravity(bool open)
+    {
+        m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = open;
+    }
+
+    public void SetStateStyle(StaticGlobalDel.EStyle lsetStyle)
+    {
+        m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eJump, (int)lsetStyle);
+    }
+
+    public void ShowBuffAnkleLSkateboard(bool show)
+    {
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.gameObject.SetActive(show);
+        m_MyPlayerMemoryShare.m_AnkleLSkateboard.gameObject.SetActive(!show);
     }
 }
