@@ -48,6 +48,13 @@ public static class StaticGlobalDel
         eMax
     }
 
+    public enum EMoveStyle
+    {
+        eNormal         = 0,
+        eRailingAction  = 1,
+        eMax
+    }
+
 
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";

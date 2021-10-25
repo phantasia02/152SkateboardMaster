@@ -72,9 +72,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         lTempDoorPost.CurTouch += 1;
 
         if (lTempPostColor != lTempDoorPost.PostColor)
-        {
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
-        }
         else
         {
             SetStateStyle(lTempDoorPost.NextData.m_Style);
@@ -84,6 +82,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
             if (lTempDoorPost.TouchMaxCount == -1)
                 lTempDoorPost.ShowObj(false);
         }
+
+        if (lTempDoorPost.gameObject.activeSelf == false)
+            m_MyPlayerMemoryShare.m_MyPlayer.SetMoveStyle(lTempDoorPost.NextData.m_NextMoveStyle);
     }
 
     public void UpdateUIMapBar()

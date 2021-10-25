@@ -140,9 +140,6 @@ public class CPlayer : CActor
         //    lTempGameSceneWindow.SetBouncingBedCount(m_MyGameManager.GetFloorBouncingBedBoxCount(m_MyMemoryShare.m_FloorNumber));
     }
 
-    //public void update
-
-
     public override void InputUpdata()
     {
         if (Input.GetMouseButtonDown(0))
@@ -217,22 +214,18 @@ public class CPlayer : CActor
 
     public void MouseDrag()
     {
-        //const float CfHalfWidth = 3.0f;
-      //  const float CfTotleWidth = CfHalfWidth * 2.0f;
         float lTempMoveY = Input.mousePosition.y - m_MyPlayerMemoryShare.m_OldMouseDownPos.y;
         float lTempMoveRatio = m_MaxMoveDirSize;
 
         lTempMoveY = lTempMoveY / m_MaxMoveDirSize;
 
-
         m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempMoveY;
         CGameSceneWindow.SharedInstance.SetVal(m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal);
+    }
 
-        //Vector2 lTempOffset = MySplineFollower.motion.offset;
-        //lTempOffset.x += lTempMoveX * lTempMoveRatio;
-        //lTempOffset = Vector2.ClampMagnitude(lTempOffset, CfHalfWidth);
-
-        //MySplineFollower.motion.offset = lTempOffset;
+    public void SetMoveStyle(StaticGlobalDel.EMoveStyle lTempStyle)
+    {
+        m_AnimatorStateCtl.SetStateIndividualIndex( CAnimatorStateCtl.EState.eRun, (int)lTempStyle);
     }
 
     // ===================== UniRx ======================

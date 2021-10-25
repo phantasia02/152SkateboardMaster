@@ -9,6 +9,7 @@ public class CDataNext
 {
     public StaticGlobalDel.EStyle           m_Style             = StaticGlobalDel.EStyle.eNormal;
     public StaticGlobalDel.EMovableState    m_State             = StaticGlobalDel.EMovableState.eMove;
+    public StaticGlobalDel.EMoveStyle       m_NextMoveStyle     = StaticGlobalDel.EMoveStyle.eNormal;  
 }
 
 public class CDoorPost : CGameObjBas
@@ -36,6 +37,7 @@ public class CDoorPost : CGameObjBas
     //public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
     [SerializeField] protected CDataNext m_NextData;
     public CDataNext NextData { get { return m_NextData; } }
+
 
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
