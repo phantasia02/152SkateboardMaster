@@ -14,16 +14,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EOtherObj
     {
-        ePlayerRogue        = 0,
-        eDummyObj           = 1,
-        eEnemy              = 2,
-        eDidFloor           = 3,
-        eMax,
-    };
-
-    public enum ECarType
-    {
-        eNormalCar = 0,
+        eScoringBox     = 0,
         eMax,
     };
 
