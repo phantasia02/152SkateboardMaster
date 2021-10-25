@@ -134,7 +134,7 @@ public class CPlayer : CActor
 
     public void UpdateAnimationChangVal()
     {
-        if (m_MyPlayerMemoryShare.m_isupdateAnimation)
+       // if (m_MyPlayerMemoryShare.m_isupdateAnimation)
             m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
     }
 

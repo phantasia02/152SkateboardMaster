@@ -26,7 +26,7 @@ ModelImporter:
     second: OrangePos
   - first:
       74: 8410838376332677084
-    second: MoveSideways
+    second: YellowMoveSideways
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -259,7 +259,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: MoveSideways
+      name: YellowMoveSideways
       takeName: Take 001
       internalID: 0
       firstFrame: 90
