@@ -28,6 +28,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public int                              m_BuffDoorInstanceID        = 0;
     public bool                             m_isupdateAnimation         = true;
     public bool                             m_UpdateUI                  = false;
+    public UniRx.ReactiveProperty<int>      m_UpdateFeverScore          = new ReactiveProperty<int>(StaticGlobalDel.g_InitScoreFever);
 };
 
 public class CPlayer : CActor
@@ -55,6 +56,16 @@ public class CPlayer : CActor
                 m_MyPlayerMemoryShare.m_AnimationVal.Value = lTempValue;
             }
         get { return m_MyPlayerMemoryShare.m_AnimationVal.Value; }
+    }
+
+    public int FeverScoreVal
+    {
+        set
+        {
+            int lTempValue = Mathf.Clamp(value, 0, StaticGlobalDel.g_MaxFever);
+            m_MyPlayerMemoryShare.m_UpdateFeverScore.Value = lTempValue;
+        }
+        get { return m_MyPlayerMemoryShare.m_UpdateFeverScore.Value; }
     }
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
@@ -113,6 +124,10 @@ public class CPlayer : CActor
             UpdateAnimationChangVal();
         }).AddTo(this.gameObject);
 
+        UpdateFeverScoreVal().Subscribe(_ => {
+            UpdateFeverScore();
+        }).AddTo(this.gameObject);
+
         m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos = m_AnkleLSkateboard.localPosition;
         m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate = m_AnkleLSkateboard.rotation;
     }
@@ -121,6 +136,13 @@ public class CPlayer : CActor
     {
         if (m_MyPlayerMemoryShare.m_isupdateAnimation)
             m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
+    }
+
+    public void UpdateFeverScore()
+    {
+        float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
+        lTemp = Mathf.Min(1.0f, lTemp);
+        CGameSceneWindow.SharedInstance.SetFeverBar(lTemp);
     }
 
     // Update is called once per frame
@@ -241,6 +263,11 @@ public class CPlayer : CActor
     public UniRx.ReactiveProperty<float> UpdateAnimationVal()
     {
         return m_MyPlayerMemoryShare.m_AnimationVal ?? (m_MyPlayerMemoryShare.m_AnimationVal = new ReactiveProperty<float>(0.5f));
+    }
+
+    public UniRx.ReactiveProperty<int> UpdateFeverScoreVal()
+    {
+        return m_MyPlayerMemoryShare.m_UpdateFeverScore ?? (m_MyPlayerMemoryShare.m_UpdateFeverScore = new ReactiveProperty<int>(StaticGlobalDel.g_InitScoreFever));
     }
     // ===================== UniRx ======================
 }

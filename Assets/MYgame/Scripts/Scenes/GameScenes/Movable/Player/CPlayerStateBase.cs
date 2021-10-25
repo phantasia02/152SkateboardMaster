@@ -73,12 +73,17 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         lTempDoorPost.CurTouch += 1;
 
         if (lTempPostColor != lTempDoorPost.PostColor)
+        {
+            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= 5;
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
+        }
         else
         {
             SetStateStyle(lTempDoorPost.NextData.m_Style);
             ConfirmDoorNextState(lTempDoorPost);
             m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
+
+            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += 10;
 
             if (lTempDoorPost.TouchMaxCount == -1)
                 lTempDoorPost.ShowObj(false);
@@ -88,7 +93,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
             m_MyPlayerMemoryShare.m_MyPlayer.SetMoveStyle(lTempDoorPost.NextData.m_NextMoveStyle);
     }
 
-    public void UpdateUIMapBar()
+    public void UpdateUIFeverBar()
     {
 
     }

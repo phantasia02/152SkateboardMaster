@@ -69,7 +69,13 @@ public static class StaticGlobalDel
 
     public const int g_FloorMask = 1 << (int)ELayerIndex.eFloor;
 
-    
+
+
+    public const int g_MaxFever         = 100;
+    public const int g_AddFever         = 10;
+    public const int g_MinusFever       = 5;
+    public const int g_InitScoreFever   = 20;
+
     public const float  g_fcbaseWidth                   = 1080.0f;
     public const float  g_fcbaseHeight                  = 2340.0f;
     public const float  g_fcbaseOrthographicSize        = 18.75f;

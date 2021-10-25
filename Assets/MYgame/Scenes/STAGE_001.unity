@@ -19291,9 +19291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4775b7c7b817e2442b6f5e8fe09ddfb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ResulPos: {fileID: 0}
-  m_PlayerNormalCamera: {fileID: 0}
-  m_PlayerResultCamera: {fileID: 0}
+  m_EndLastSplineFollower: {fileID: 741167935}
   m_CinemachineTargetGroup: {fileID: 0}
   m_UIPostColor: 000000000300000004000000
 --- !u!4 &2134379648
