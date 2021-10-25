@@ -23,6 +23,7 @@ public class CWaitStatePlayer : CPlayerStateBase
 
     protected override void OutState()
     {
+        m_MyPlayerMemoryShare.m_UpdateUI = true;
     }
 
     public override void MouseDown()

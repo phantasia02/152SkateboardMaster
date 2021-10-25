@@ -7,6 +7,8 @@ public class CJumpNormalStatePlayer : CPlayerStateBase
 {
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eJump; }
 
+    public bool lTemp = false;
+
     public CJumpNormalStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
 
@@ -19,25 +21,32 @@ public class CJumpNormalStatePlayer : CPlayerStateBase
 
         m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, -360.0f, 0.0f), 1.0f, RotateMode.LocalAxisAdd);
 
-        Vector3 lTempLocalpos = m_MyPlayerMemoryShare.m_AnkleLSkateboard.localPosition;
-        Quaternion lTempDORotate = m_MyPlayerMemoryShare.m_AnkleLSkateboard.rotation;
 
         ShowBuffAnkleLSkateboard(true);
 
-        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.position = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.position;
-        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.rotation = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.rotation;
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.position = m_MyPlayerMemoryShare.m_AnkleLSkateboard.position;
+        m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.rotation = m_MyPlayerMemoryShare.m_AnkleLSkateboard.rotation;
 
         Sequence TempSequence = DOTween.Sequence();
         TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(-0.5f, 0.5f).SetEase(Ease.Linear));
         TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotate(new Vector3(0.0f, 360.0f, 360.0f), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        TempSequence.AppendCallback(() => { lTemp = true; });
         //TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos.x, 0.5f).SetEase(Ease.Linear));
         //TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.5f).SetEase(Ease.Linear));
         TempSequence.SetUpdate(true);
         TempSequence.PlayForward();
+
+        lTemp = false;
     }
 
     protected override void updataState()
     {
+        if (lTemp)
+        {
+            m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localPosition = Vector3.Lerp(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localPosition, m_MyPlayerMemoryShare.m_AnkleLSkateboard.localPosition, Time.deltaTime * 5.0f);
+            m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localRotation = Quaternion.Lerp(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localRotation, m_MyPlayerMemoryShare.m_AnkleLSkateboard.localRotation, Time.deltaTime * 5.0f) ;
+        }
+
     }
 
     protected override void OutState()

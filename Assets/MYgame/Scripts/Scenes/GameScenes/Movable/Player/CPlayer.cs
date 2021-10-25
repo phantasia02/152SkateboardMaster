@@ -27,7 +27,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public Quaternion                       m_AnkleLSkateboardRotate    = Quaternion.identity;
     public int                              m_BuffDoorInstanceID        = 0;
     public bool                             m_isupdateAnimation         = true;
-    // public float                    m_        = null;
+    public bool                             m_UpdateUI                  = false;
 };
 
 public class CPlayer : CActor
@@ -40,11 +40,10 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-    [SerializeField] protected Transform m_GSkateboard = null;
-    [SerializeField] protected Transform m_AnkleLSkateboard = null;
+    [SerializeField] protected Transform m_GSkateboard          = null;
+    [SerializeField] protected Transform m_AnkleLSkateboard     = null;
     [SerializeField] protected Transform m_BuffAnkleLSkateboard = null;
-
-
+   
     // ==================== SerializeField ===========================================
 
 
@@ -130,14 +129,23 @@ public class CPlayer : CActor
         base.Update();
 
         //if (m_MyGameManager.CurState == CGameManager.EState.ePlay || m_MyGameManager.CurState == CGameManager.EState.eReady)
-            InputUpdata();
+        InputUpdata();
 
+        UpdateUIMapBar();
 
         //transform.Translate(new Vector3(0.0f, 0.0f, Time.deltaTime * 3.0f));
-       // m_MyPlayerMemoryShare.m_DamiCameraFollwer.
+        // m_MyPlayerMemoryShare.m_DamiCameraFollwer.
         //CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
         //if (lTempGameSceneWindow && lTempGameSceneWindow.GetShow())
         //    lTempGameSceneWindow.SetBouncingBedCount(m_MyGameManager.GetFloorBouncingBedBoxCount(m_MyMemoryShare.m_FloorNumber));
+    }
+
+    public void UpdateUIMapBar()
+    {
+        if (!m_MyPlayerMemoryShare.m_UpdateUI)
+            return;
+
+        CGameSceneWindow.SharedInstance.SetMapProgress((float)(m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent / m_MyGameManager.EndLastSplineFollower.startPosition));
     }
 
     public override void InputUpdata()

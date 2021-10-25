@@ -18,6 +18,7 @@ public class CFinishStatePlayer : CPlayerStateBase
 
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
         Time.timeScale = 0.3f;
+        m_MyPlayerMemoryShare.m_UpdateUI = false;
     }
 
     protected override void updataState()

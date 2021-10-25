@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Cinemachine;
 using UniRx;
-
+using Dreamteck.Splines;
 
 public class CGameManager : MonoBehaviour
 {
@@ -41,14 +41,8 @@ public class CGameManager : MonoBehaviour
     protected CPlayer m_Player = null;
     public CPlayer Player { get { return m_Player; } }
 
-    [SerializeField] Transform m_ResulPos = null;
-    public Transform ResulPos { get { return m_ResulPos; } }
-
-    [SerializeField] GameObject m_PlayerNormalCamera = null;
-    public GameObject PlayerNormalFollowObj { get { return m_PlayerNormalCamera; } }
-
-    [SerializeField] GameObject m_PlayerResultCamera = null;
-    public GameObject PlayerResultCamera { get { return m_PlayerResultCamera; } }
+    [SerializeField] protected SplineFollower m_EndLastSplineFollower = null;
+    public SplineFollower EndLastSplineFollower { get { return m_EndLastSplineFollower; } }
 
     [SerializeField] CinemachineTargetGroup m_CinemachineTargetGroup = null;
     public CinemachineTargetGroup CinemachineTargetGroup { get { return m_CinemachineTargetGroup; } }
