@@ -264,7 +264,14 @@ public class CPlayer : CActor
 
     public void GameOver()
     {
-        Debug.Log("GameOver~~~~~~~~~");
+     //   float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
+        float lTempFeverScoreRatio = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
+        float lTempResult = lTempFeverScoreRatio;
+
+        CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
+        m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count);
+
+        m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
     }
 
     // ===================== UniRx ======================

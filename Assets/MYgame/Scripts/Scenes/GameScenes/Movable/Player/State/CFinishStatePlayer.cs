@@ -11,7 +11,6 @@ public class CFinishStatePlayer : CPlayerStateBase
     public CFinishStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
         m_TotleRange = m_MaxPercent - (float)m_MyGameManager.EndLastSplineFollower.startPosition;
-        Debug.Log($" m_TotleRange = { m_TotleRange}");
     }
 
     protected override void InState()
@@ -20,7 +19,7 @@ public class CFinishStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyRotationY = true;
 
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = false;
-        Time.timeScale = 0.3f;
+      //  Time.timeScale = 0.3f;
         m_MyPlayerMemoryShare.m_UpdateUI = false;
 
         
@@ -34,7 +33,7 @@ public class CFinishStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_PlayerFollwer.enabled = false;
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
-        Time.timeScale = 1.0f;
+       // Time.timeScale = 1.0f;
     }
 
     public override void MouseDown()
