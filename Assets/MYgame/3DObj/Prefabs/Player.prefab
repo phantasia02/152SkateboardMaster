@@ -3418,6 +3418,10 @@ MonoBehaviour:
   m_GSkateboard: {fileID: 843106670577503611}
   m_AnkleLSkateboard: {fileID: 843106670577503611}
   m_BuffAnkleLSkateboard: {fileID: 8663914062295394968}
+  m_GoodFx:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_FailFx: []
 --- !u!114 &5420355270370977875
 MonoBehaviour:
   m_ObjectHideFlags: 0

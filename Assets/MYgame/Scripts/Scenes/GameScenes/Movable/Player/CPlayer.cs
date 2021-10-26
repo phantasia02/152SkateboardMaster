@@ -30,6 +30,8 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public bool                             m_UpdateUI                  = false;
     public UniRx.ReactiveProperty<int>      m_UpdateFeverScore          = new ReactiveProperty<int>(StaticGlobalDel.g_InitScoreFever);
     public int                              m_EndIndex                  = 0;
+    public StaticGlobalDel.EStyle           m_CurStyle                  = StaticGlobalDel.EStyle.eNormal;
+
 };
 
 public class CPlayer : CActor
@@ -42,10 +44,10 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-    [SerializeField] protected Transform m_GSkateboard          = null;
-    [SerializeField] protected Transform m_AnkleLSkateboard     = null;
-    [SerializeField] protected Transform m_BuffAnkleLSkateboard = null;
-   
+    [SerializeField] protected Transform            m_GSkateboard           = null;
+    [SerializeField] protected Transform            m_AnkleLSkateboard      = null;
+    [SerializeField] protected Transform            m_BuffAnkleLSkateboard  = null;
+
     // ==================== SerializeField ===========================================
 
 

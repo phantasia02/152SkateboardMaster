@@ -13990,7 +13990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3164491880100626720, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
       propertyPath: m_NextData.m_Style
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3164491880100626726, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
       propertyPath: m_Name
@@ -19325,7 +19325,7 @@ Transform:
   - {fileID: 161834064}
   - {fileID: 882969084}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2140880828
 PrefabInstance:
@@ -19495,7 +19495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149472482400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.59, y: 0.51, z: 13.31}
+  m_LocalPosition: {x: -22.59, y: 0, z: 13.31}
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 247291178}
@@ -19706,7 +19706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1756024504983280184, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1756024504983280184, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19748,6 +19748,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1756024504983280185, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
+      propertyPath: m_AllFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756024504983280185, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
+      propertyPath: m_AllFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 556891077736040942, guid: 3e3cd4b5f5ed22b4a96ba8c1b917aea8, type: 3}
+    - target: {fileID: 1756024504983280185, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
+      propertyPath: m_AllFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 5004537445772219778, guid: 4f9793f9db692414d8db2348d65c4acb, type: 3}
+    - target: {fileID: 1756024504983280185, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
+      propertyPath: m_AllFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 5004537445772219778, guid: dfaebad1eafaecd4199341d72db8ec6e, type: 3}
     - target: {fileID: 1756024504983280185, guid: 3dc54a55b37537e4a9a23202325b2d10, type: 3}
       propertyPath: m_AllOtherObj.Array.size
       value: 1

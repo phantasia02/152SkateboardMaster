@@ -8,7 +8,9 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EAllFXType
     {
-        eAddUp  = 0,
+        eGoodFxLight    = 0,
+        eGoodFx1        = 1,
+        eFail1Fx1       = 2,
         eMax,
     };
 

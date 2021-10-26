@@ -74,7 +74,7 @@ public static class StaticGlobalDel
     public const int g_MaxFever         = 100;
     public const int g_AddFever         = 10;
     public const int g_MinusFever       = 5;
-    public const int g_InitScoreFever   = 20;
+    public const int g_InitScoreFever   = 0;
 
     public const float  g_fcbaseWidth                   = 1080.0f;
     public const float  g_fcbaseHeight                  = 2340.0f;
@@ -85,13 +85,22 @@ public static class StaticGlobalDel
     // ============= Speed ====================
     public const float g_DefMovableTotleSpeed = 15.0f;
 
-    public static GameObject NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype)
+    public static Transform NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype, Vector3 offsetPos)
+    {
+        CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
+        GameObject lTempFx = GameObject.Instantiate(lTempGGameSceneData.m_AllFX[(int)Fxtype], ParentTransform);
+        lTempFx.transform.position = ParentTransform.position + offsetPos;
+
+        return lTempFx.transform;
+    }
+
+    public static Transform NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype)
     {
         CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
         GameObject lTempFx = GameObject.Instantiate(lTempGGameSceneData.m_AllFX[(int)Fxtype], ParentTransform);
         lTempFx.transform.position = ParentTransform.position;
 
-        return lTempFx;
+        return lTempFx.transform;
     }
 
     public static void SetMaterialRenderingMode(this Material material, RenderingMode renderingMode)

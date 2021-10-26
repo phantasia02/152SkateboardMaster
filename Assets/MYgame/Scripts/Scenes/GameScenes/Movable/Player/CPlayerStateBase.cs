@@ -66,22 +66,29 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 
         lTempDoorPost.CurTouch += 1;
 
+
+        StaticGlobalDel.EStyle lTempCurStyle = m_MyPlayerMemoryShare.m_CurStyle;
+        SetStateStyle(lTempDoorPost.NextData.m_Style);
+        ConfirmDoorNextState(lTempDoorPost);
+
         if (lTempPostColor != lTempDoorPost.PostColor)
         {
-            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= 5;
-            m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
+            ShowFailFx(true);
+            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= 10;
+
+            if (lTempCurStyle == StaticGlobalDel.EStyle.eSlow)
+                m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
         }
         else
         {
-            SetStateStyle(lTempDoorPost.NextData.m_Style);
-            ConfirmDoorNextState(lTempDoorPost);
-            m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
-
+            ShowGoodFx(true);
             m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += 10;
-
-            if (lTempDoorPost.TouchMaxCount == -1)
-                lTempDoorPost.ShowObj(false);
         }
+
+        m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
+
+        if (lTempDoorPost.TouchMaxCount == -1)
+            lTempDoorPost.ShowObj(false);
 
         if (lTempDoorPost.gameObject.activeSelf == false)
             m_MyPlayerMemoryShare.m_MyPlayer.SetMoveStyle(lTempDoorPost.NextData.m_NextMoveStyle);
@@ -94,12 +101,29 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 
     public void SetStateStyle(StaticGlobalDel.EStyle lsetStyle)
     {
-        m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eJump, (int)lsetStyle);
+        m_MyPlayerMemoryShare.m_CurStyle = lsetStyle;
+        m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eJump, (int)m_MyPlayerMemoryShare.m_CurStyle);
     }
 
     public void ShowBuffAnkleLSkateboard(bool show)
     {
         m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.gameObject.SetActive(show);
         m_MyPlayerMemoryShare.m_AnkleLSkateboard.gameObject.SetActive(!show);
+    }
+
+    public void ShowGoodFx(bool show)
+    {
+        //for (int i = 0; i < m_MyPlayerMemoryShare.m_GoodFx.Count; i++)
+        //    m_MyPlayerMemoryShare.m_GoodFx[i].SetActive(show);
+
+        m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
+        m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFx1, new Vector3(0.0f, 2.2f, 0.0f));
+    }
+
+    public void ShowFailFx(bool show)
+    {
+        //for (int i = 0; i < m_MyPlayerMemoryShare.m_FailFx.Count; i++)
+        //    m_MyPlayerMemoryShare.m_FailFx[i].SetActive(show);
+        m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eFail1Fx1, new Vector3(0.0f, 2.2f, 0.0f));
     }
 }
