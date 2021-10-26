@@ -258,6 +258,11 @@ public class CPlayer : CActor
         m_AnimatorStateCtl.SetStateIndividualIndex( CAnimatorStateCtl.EState.eRun, (int)lTempStyle);
     }
 
+    public void GameOver()
+    {
+        Debug.Log("GameOver~~~~~~~~~");
+    }
+
     // ===================== UniRx ======================
 
     public UniRx.ReactiveProperty<float> UpdateAnimationVal()

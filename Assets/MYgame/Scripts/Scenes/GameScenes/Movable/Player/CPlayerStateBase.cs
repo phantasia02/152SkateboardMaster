@@ -93,11 +93,6 @@ public abstract class CPlayerStateBase : CMovableStatePototype
             m_MyPlayerMemoryShare.m_MyPlayer.SetMoveStyle(lTempDoorPost.NextData.m_NextMoveStyle);
     }
 
-    public void UpdateUIFeverBar()
-    {
-
-    }
-
     public void OpenUseGravity(bool open)
     {
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = open;
