@@ -18,10 +18,10 @@ MonoBehaviour:
   _outlineSettings:
     _outlineSettings: {fileID: 0}
     _outlineColor: {r: 0, g: 0.55565214, b: 1, a: 1}
-    _outlineWidth: 32
+    _outlineWidth: 10
     _outlineIntensity: 2
     _outlineAlphaCutoff: 0.9
-    _outlineMode: 3
+    _outlineMode: 2
     _filterMode: 1
     _layerMask:
       serializedVersion: 2
@@ -47,10 +47,10 @@ MonoBehaviour:
   _outlineSettings:
     _outlineSettings: {fileID: 0}
     _outlineColor: {r: 0, g: 0.745283, b: 0.11405788, a: 1}
-    _outlineWidth: 32
+    _outlineWidth: 10
     _outlineIntensity: 2
     _outlineAlphaCutoff: 0.9
-    _outlineMode: 3
+    _outlineMode: 2
     _filterMode: 1
     _layerMask:
       serializedVersion: 2
@@ -76,10 +76,10 @@ MonoBehaviour:
   _outlineSettings:
     _outlineSettings: {fileID: 0}
     _outlineColor: {r: 1, g: 0.6472527, b: 0, a: 1}
-    _outlineWidth: 32
+    _outlineWidth: 10
     _outlineIntensity: 2
     _outlineAlphaCutoff: 0.9
-    _outlineMode: 3
+    _outlineMode: 2
     _filterMode: 1
     _layerMask:
       serializedVersion: 2
@@ -151,11 +151,11 @@ MonoBehaviour:
   _outlineLayers: {fileID: 0}
   _outlineSettings:
     _outlineSettings: {fileID: 0}
-    _outlineColor: {r: 1, g: 0.91049933, b: 0, a: 1}
-    _outlineWidth: 32
+    _outlineColor: {r: 1, g: 0.9864793, b: 0, a: 1}
+    _outlineWidth: 10
     _outlineIntensity: 2
     _outlineAlphaCutoff: 0.9
-    _outlineMode: 3
+    _outlineMode: 2
     _filterMode: 1
     _layerMask:
       serializedVersion: 2
@@ -181,10 +181,10 @@ MonoBehaviour:
   _outlineSettings:
     _outlineSettings: {fileID: 0}
     _outlineColor: {r: 1, g: 0, b: 0.8929982, a: 1}
-    _outlineWidth: 32
+    _outlineWidth: 10
     _outlineIntensity: 2
     _outlineAlphaCutoff: 0.9
-    _outlineMode: 1
+    _outlineMode: 2
     _filterMode: 1
     _layerMask:
       serializedVersion: 2

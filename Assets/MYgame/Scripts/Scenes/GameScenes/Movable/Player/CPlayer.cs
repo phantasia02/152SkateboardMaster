@@ -29,6 +29,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public bool                             m_isupdateAnimation         = true;
     public bool                             m_UpdateUI                  = false;
     public UniRx.ReactiveProperty<int>      m_UpdateFeverScore          = new ReactiveProperty<int>(StaticGlobalDel.g_InitScoreFever);
+    public int                              m_EndIndex                  = 0;
 };
 
 public class CPlayer : CActor
@@ -87,6 +88,8 @@ public class CPlayer : CActor
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eFinish].AllThisState.Add(new CFinishStatePlayer(this));
 
+        m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
+
     }
 
     protected override void CreateMemoryShare()
@@ -141,7 +144,6 @@ public class CPlayer : CActor
     public void UpdateFeverScore()
     {
         float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
-        lTemp = Mathf.Min(1.0f, lTemp);
         CGameSceneWindow.SharedInstance.SetFeverBar(lTemp);
     }
 

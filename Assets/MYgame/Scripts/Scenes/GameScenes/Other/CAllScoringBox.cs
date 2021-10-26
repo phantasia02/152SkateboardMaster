@@ -4,10 +4,11 @@ using UnityEngine;
 
 
 
-public class CAllScoringBox : MonoBehaviour
+public class CAllScoringBox : CSingletonMonoBehaviour<CAllScoringBox>
 {
    // [SerializeField] protected int m_ScoringBoxCount = 10;
     protected List<CScoringBox> m_AllScoringBox = new List<CScoringBox>();
+    public List<CScoringBox> AllScoringBox { get { return m_AllScoringBox; } }
     [SerializeField] protected List<CDataInitScoringBox> m_AllDataInitScoringBox = new List<CDataInitScoringBox>();
 
     private void Awake()
@@ -35,7 +36,7 @@ public class CAllScoringBox : MonoBehaviour
 
             lTempScoringBox.InitSet(m_AllDataInitScoringBox[i]);
 
-            lTempZ += 5.0f;
+            lTempZ += 10.0f;
         }
     }
 }

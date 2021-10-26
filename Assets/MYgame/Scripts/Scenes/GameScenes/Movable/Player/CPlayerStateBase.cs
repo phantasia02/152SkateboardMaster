@@ -58,18 +58,12 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 
     public void TriggerEnterDoor(Collider other)
     {
-
-
         CDoorPost lTempDoorPost = other.GetComponentInParent<CDoorPost>();
         CGGameSceneData.EPostColor lTempPostColor = CurPostColor();
-        //Debug.Log($"===================================");
-        //Debug.Log($"lTempPostColor = {lTempPostColor}");
-        //Debug.Log($" lTempDoorPost.PostColor = { lTempDoorPost.PostColor}");
+
         if (m_MyPlayerMemoryShare.m_BuffDoorInstanceID == lTempDoorPost.gameObject.GetInstanceID())
             return;
 
-        //  Debug.Log($" m_MyPlayerMemoryShare.m_BuffDoorInstanceID = { m_MyPlayerMemoryShare.m_BuffDoorInstanceID}");
-        // other.gameObject.SetActive(false);
         lTempDoorPost.CurTouch += 1;
 
         if (lTempPostColor != lTempDoorPost.PostColor)

@@ -39,17 +39,13 @@ public class CFinishStatePlayer : CPlayerStateBase
 
     public override void MouseDown()
     {
-        m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWait;
+        float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
+        float lTempFeverScoreRatio = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
+        float lTempResult = (1.0f - lTempResultPercent / m_TotleRange) * 0.25f + lTempFeverScoreRatio * 0.75f;
 
-        float lTemp = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
-        Debug.Log($" lTemp  = { lTemp }");
-        //if (lTemp < 0.0f)
-        //{
-        //    Debug.Log("game over");
-        //    return;
-        //}
+        CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
+        m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count) + 1;
 
-        Debug.Log($" 1 - lTemp / m_TotleRange = {1 - lTemp / m_TotleRange}");
-       
+        m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
     }
 }
