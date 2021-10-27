@@ -13,7 +13,7 @@ public class CWinStateAudience : CAudienceStateBase
 
     protected override void InState()
     {
-        SetAnimationState(CAnimatorStateCtl.EState.eWin);
+        SetAnimationState(CAnimatorStateCtl.EState.eWin, Random.Range(0.9f, 1.1f));
         m_MyAudienceMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eAttributeGood, new Vector3(0.0f, 2.0f, 0.0f));
     }
 

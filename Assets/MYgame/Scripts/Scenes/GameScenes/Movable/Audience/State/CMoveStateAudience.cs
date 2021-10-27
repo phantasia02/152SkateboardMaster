@@ -5,7 +5,7 @@ using UnityEngine;
 public class CMoveStateAudience : CAudienceStateBase
 {
 
-    const float CTargetSqrDis = 16.0f;
+    const float CTargetSqrDis = 9.0f;
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eMove; }
 
     public CMoveStateAudience(CMovableBase pamMovableBase) : base(pamMovableBase)

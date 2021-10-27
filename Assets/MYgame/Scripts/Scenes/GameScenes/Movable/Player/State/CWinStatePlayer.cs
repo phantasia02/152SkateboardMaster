@@ -45,6 +45,7 @@ public class CWinStatePlayer : CPlayerStateBase
         m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 2.0f, 10.0f);
 
         EndPos.y = 0.1f;
+        EndPos.z += 1.0f;
         Sequence TempSequence = DOTween.Sequence();
       //  TempSequence.AppendInterval(0.5f);
         TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(-m_ResetTim, lTempRotateTime * 0.5f).SetEase(Ease.Linear));
@@ -55,12 +56,12 @@ public class CWinStatePlayer : CPlayerStateBase
             m_MyGameManager.AllAudience.position = EndPos;
             m_MyGameManager.AllAudience.gameObject.SetActive(true);
             SetAnimationState(CAnimatorStateCtl.EState.eIdle);
-            m_MyGameManager.WinCamera.SetActive(true);
+          //  m_MyGameManager.WinCamera.SetActive(true);
         });
 
         Sequence TempSequenceCamera = DOTween.Sequence();
-        TempSequenceCamera.AppendInterval(0.5f);
-        TempSequenceCamera.AppendCallback(() =>{m_MyGameManager.WinCamera.SetActive(true);});
+        //TempSequenceCamera.AppendInterval(0.5f);
+        TempSequenceCamera.AppendCallback(() => { m_MyGameManager.WinCamera.SetActive(true); });
         TempSequenceCamera.PlayForward();
 
         m_ResetTimeFlag = false;
