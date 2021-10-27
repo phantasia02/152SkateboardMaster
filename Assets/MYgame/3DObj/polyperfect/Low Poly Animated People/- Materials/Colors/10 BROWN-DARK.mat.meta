@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/MYgame/3DObj/polyperfect/Low Poly Animated People/- Materials/Colors/10 BROWN-DARK.mat.meta
 guid: 6e3ac6e47b4d7a44685dfef9bf209413
+=======
+guid: f8b35b6f97cf9a0428e6e3b4f679b8a9
+>>>>>>> 0d4e81c8eb83a6a243b594f6e6e993c52799017f:Assets/MYgame/3DObj/Asheville. Low Poly City/Materials/LowPolyCity_Mat.mat.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

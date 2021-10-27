@@ -107,6 +107,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+<<<<<<< HEAD:Assets/MYgame/3DObj/EffectTexturesAndPrefabs/Materials/Light.mat
 --- !u!114 &3834503143698816136
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -120,3 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 4
+=======
+>>>>>>> 0d4e81c8eb83a6a243b594f6e6e993c52799017f:Assets/MYgame/3DObj/Asheville. Low Poly City/Materials/White.mat
