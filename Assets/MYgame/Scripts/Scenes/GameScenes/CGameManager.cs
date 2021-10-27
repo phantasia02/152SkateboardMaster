@@ -40,15 +40,21 @@ public class CGameManager : MonoBehaviour
 
     protected CPlayer m_Player = null;
     public CPlayer Player { get { return m_Player; } }
+    // ==================== SerializeField ===========================================
 
     [SerializeField] protected SplineFollower m_EndLastSplineFollower = null;
     public SplineFollower EndLastSplineFollower { get { return m_EndLastSplineFollower; } }
 
-    [SerializeField] CinemachineTargetGroup m_CinemachineTargetGroup = null;
-    public CinemachineTargetGroup CinemachineTargetGroup { get { return m_CinemachineTargetGroup; } }
+    [SerializeField] protected Transform m_AllAudience = null;
+    public Transform AllAudience { get { return m_AllAudience; } }
+
+    [SerializeField] GameObject m_WinCamera = null;
+    public GameObject WinCamera { get { return m_WinCamera; } }
 
     [VarRename(new string[] { "Top", "Middle", "Down" })]
     [SerializeField] protected CGGameSceneData.EPostColor[] m_UIPostColor = new CGGameSceneData.EPostColor[3];
+
+    // ==================== SerializeField ===========================================
     public CGGameSceneData.EPostColor[] UIPostColor { get { return m_UIPostColor; } }
 
 
@@ -327,17 +333,4 @@ public class CGameManager : MonoBehaviour
     {
         m_ChangeScenes.ResetScene();
     }
-
-    public void AddGroup(Transform lTempAddTransform)
-    {
-        CinemachineTargetGroup.AddMember(lTempAddTransform, 1.0f, 2.0f);
-    }
-
-    public void RemoveMemberGroup(Transform lTempAddTransform)
-    {CinemachineTargetGroup.RemoveMember(lTempAddTransform);}
-
-
-
-
-
 }
