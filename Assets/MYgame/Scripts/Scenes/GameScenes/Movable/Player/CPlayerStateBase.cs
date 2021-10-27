@@ -24,15 +24,15 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     {
         if (m_MyMemoryShare.m_TotleSpeed != m_MyMemoryShare.m_TargetTotleSpeed)
         {
-           
-           //m_MyMemoryShare.m_TotleSpeed = Mathf.Lerp(m_MyMemoryShare.m_TotleSpeed, m_MyMemoryShare.m_TargetTotleSpeed, m_MyPlayerMemoryShare.m_AddSpeedSecond * Time.deltaTime);
-           m_MyMemoryShare.m_TotleSpeed = Mathf.MoveTowards(m_MyMemoryShare.m_TotleSpeed, m_MyMemoryShare.m_TargetTotleSpeed, m_MyPlayerMemoryShare.m_AddSpeedSecond * Time.deltaTime);
-            
+
+            //m_MyMemoryShare.m_TotleSpeed = Mathf.Lerp(m_MyMemoryShare.m_TotleSpeed, m_MyMemoryShare.m_TargetTotleSpeed, m_MyPlayerMemoryShare.m_AddSpeedSecond * Time.deltaTime);
+            m_MyMemoryShare.m_TotleSpeed = Mathf.MoveTowards(m_MyMemoryShare.m_TotleSpeed, m_MyMemoryShare.m_TargetTotleSpeed, m_MyPlayerMemoryShare.m_AddSpeedSecond * Time.deltaTime);
+
             if (Mathf.Abs(m_MyMemoryShare.m_TotleSpeed - m_MyMemoryShare.m_TargetTotleSpeed) < 0.1f)
                 m_MyMemoryShare.m_TotleSpeed = m_MyMemoryShare.m_TargetTotleSpeed;
 
             m_MyPlayerMemoryShare.m_PlayerFollwer.followSpeed = m_MyMemoryShare.m_TotleSpeed;
-           // m_MyPlayerMemoryShare.m_MyPlayer.UpdateCurSpeed();
+            // m_MyPlayerMemoryShare.m_MyPlayer.UpdateCurSpeed();
         }
     }
 
@@ -117,13 +117,19 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         //    m_MyPlayerMemoryShare.m_GoodFx[i].SetActive(show);
 
         m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
-      //  m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFx1, new Vector3(0.0f, 2.2f, 0.0f));
+        //  m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFx1, new Vector3(0.0f, 2.2f, 0.0f));
     }
 
     public void ShowFailFx(bool show)
     {
         //for (int i = 0; i < m_MyPlayerMemoryShare.m_FailFx.Count; i++)
         //    m_MyPlayerMemoryShare.m_FailFx[i].SetActive(show);
-     //   m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eFail1Fx1, new Vector3(0.0f, 2.2f, 0.0f));
+        //   m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eFail1Fx1, new Vector3(0.0f, 2.2f, 0.0f));
+    }
+
+    public void ShowMoveFx(bool show)
+    {
+        for (int i = 0; i < m_MyPlayerMemoryShare.m_MoveShowFx.Count; i++)
+            m_MyPlayerMemoryShare.m_MoveShowFx[i].gameObject.SetActive(show);
     }
 }

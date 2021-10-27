@@ -8,6 +8,7 @@ public class CWinStatePlayer : CPlayerStateBase
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eWin; }
     public bool m_ResetTimeFlag = false;
     public float m_ResetTim = 0.0f;
+    public float m_DeltaTimeResetTime = 10.0f;
 
     public CWinStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -51,11 +52,14 @@ public class CWinStatePlayer : CPlayerStateBase
         m_ResetTimeFlag = false;
         // m_MyPlayerMemoryShare.m_MyMovable.transform.DOJump(lTempAllScoringBox.AllScoringBox[m_MyPlayerMemoryShare.m_EndIndex].transform.position, 2.0f, 1, lTempJumpTime).SetEase(Ease.InOutExpo);
         //m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count) + 1;
+
+        m_DeltaTimeResetTime = 10.0f - lTempRotateTime * 0.5f;
+        m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 3.0f, 10.0f);
     }
 
     protected override void updataState()
     {
-        float TempTimeT = Time.deltaTime * 5.0f;
+        float TempTimeT = Time.deltaTime * m_DeltaTimeResetTime;
 
         m_MyPlayerMemoryShare.m_MyMovable.transform.up = Vector3.Lerp(m_MyPlayerMemoryShare.m_MyMovable.transform.up, Vector3.up, TempTimeT * 0.2f);
 

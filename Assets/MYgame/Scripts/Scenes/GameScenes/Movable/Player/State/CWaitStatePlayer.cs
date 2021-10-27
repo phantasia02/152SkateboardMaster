@@ -15,6 +15,7 @@ public class CWaitStatePlayer : CPlayerStateBase
     {
         SetAnimationState(CAnimatorStateCtl.EState.eIdle);
         m_MyPlayerMemoryShare.m_MyMovable.SetMoveBuff(CMovableBase.ESpeedBuff.eHit, 0.0f, true);
+        ShowMoveFx(false);
     }
 
     protected override void updataState()
@@ -24,6 +25,7 @@ public class CWaitStatePlayer : CPlayerStateBase
     protected override void OutState()
     {
         m_MyPlayerMemoryShare.m_UpdateUI = true;
+        ShowMoveFx(true);
     }
 
     public override void MouseDown()
