@@ -23,6 +23,7 @@ public class CMemoryShareBase
     public CMovableStateData[]          m_Data                  = new CMovableStateData[(int)StaticGlobalDel.EMovableState.eMax];
     public CMovableBase.DataState[]     m_AllState              = null;
     public CMovableBase.DataState       m_OldDataState          = new CMovableBase.DataState();
+    public Transform                    m_MyTransform           = null;
 };
 
 public abstract class CMovableBase : CGameObjBas
@@ -172,7 +173,7 @@ public abstract class CMovableBase : CGameObjBas
     {
         m_MyMemoryShare = new CMemoryShareBase();
 
-
+        
         SetBaseMemoryShare();
     }
 
@@ -185,6 +186,7 @@ public abstract class CMovableBase : CGameObjBas
     {
         m_MyMemoryShare.m_AllChildCollider      = GetComponentsInChildren<Collider>();
         m_MyMemoryShare.m_MyRigidbody           = this.GetComponent<Rigidbody>();
+        m_MyMemoryShare.m_MyTransform           = this.transform;
         m_MyMemoryShare.m_MyMovable             = this;
     }
 

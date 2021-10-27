@@ -6,8 +6,6 @@ public abstract class CPlayerStateBase : CMovableStatePototype
 {
     protected CPlayerMemoryShare m_MyPlayerMemoryShare = null;
     protected bool m_OneTouch = false;
-    protected int m_BuffDoorInstanceID = 0;
-    protected float m_End = 0;
 
     public CPlayerStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

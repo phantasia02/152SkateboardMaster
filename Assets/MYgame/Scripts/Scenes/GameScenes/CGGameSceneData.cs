@@ -11,26 +11,13 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
         eGoodFxLight    = 0,
         eGoodFx1        = 1,
         eFail1Fx1       = 2,
+        eAttributeGood  = 3,
         eMax,
     };
 
     public enum EOtherObj
     {
         eScoringBox     = 0,
-        eMax,
-    };
-
-    public enum EArmsType
-    {
-        eMace           = 0,
-        eArmature       = 1,
-        eAxe            = 2,
-        eHam            = 3,
-        ePlunger        = 4,
-        eLollipop_02    = 5,
-        eLeg            = 6,
-        eRolling_Pin    = 7,
-        eBaby_Hammer    = 8,
         eMax,
     };
 

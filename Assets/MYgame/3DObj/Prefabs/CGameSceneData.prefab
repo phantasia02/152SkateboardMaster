@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354a63f2da176f84380871f546f07075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllFX: []
-  m_AllOtherObj: []
+  m_AllFX:
+  - {fileID: 556891077736040942, guid: 3e3cd4b5f5ed22b4a96ba8c1b917aea8, type: 3}
+  - {fileID: 5004537445772219778, guid: 4f9793f9db692414d8db2348d65c4acb, type: 3}
+  - {fileID: 5004537445772219778, guid: dfaebad1eafaecd4199341d72db8ec6e, type: 3}
+  - {fileID: 5004537445772219778, guid: 1256a94e2550e424d82799f1cf85f3da, type: 3}
+  m_AllOtherObj:
+  - {fileID: 2069101826717970994, guid: 8cbf8af6708724c4184317033a4b096b, type: 3}
   m_AllPostColor: []
