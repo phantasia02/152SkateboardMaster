@@ -37,8 +37,8 @@ public class CReadyGameWindow : CSingletonMonoBehaviour<CReadyGameWindow>
             m_CurLevelTextShadow.text = m_CurLevelText.text = (SceneManager.GetActiveScene().buildIndex).ToString() + "\n" + GlobalData.g_ShowCurLevelNamePrefix;
 
 
-        Tween lTempTween = m_HandImage.rectTransform.DOLocalMoveX(300.0f, 1.0f).SetEase( Ease.Linear);
-        lTempTween.SetLoops(-1,  LoopType.Yoyo);
+        //Tween lTempTween = m_HandImage.rectTransform.DOLocalMoveX(300.0f, 1.0f).SetEase( Ease.Linear);
+        //lTempTween.SetLoops(-1,  LoopType.Yoyo);
         //m_AllText = this.GetComponentsInChildren<Text>();
         //  GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, m_CurLevelText.text);
 
