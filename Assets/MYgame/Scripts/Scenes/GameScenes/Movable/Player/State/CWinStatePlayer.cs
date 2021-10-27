@@ -54,7 +54,7 @@ public class CWinStatePlayer : CPlayerStateBase
         //m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count) + 1;
 
         m_DeltaTimeResetTime = 10.0f - lTempRotateTime * 0.5f;
-        m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 3.0f, 10.0f);
+        m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 2.0f, 10.0f);
     }
 
     protected override void updataState()

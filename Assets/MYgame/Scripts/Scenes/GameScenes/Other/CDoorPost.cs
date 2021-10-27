@@ -67,7 +67,7 @@ public class CDoorPost : CGameObjBas
         m_MyObjRenderer.gameObject.layer = CGGameSceneData.SharedInstance.m_AllLayerOutlineColor[(int)m_PostColor];
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
-        m_AnimatorPost.SetTrigger(lTempTag);
+       
         //float lTemppostVal = 0.0f;
 
         //if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
@@ -83,10 +83,11 @@ public class CDoorPost : CGameObjBas
     // Start is called before the first frame update
     protected override void Start()
     {
-        
+        string lTempTag = m_AnimationTag[(int)m_PostColor];
+        m_AnimatorPost.SetTrigger(lTempTag);
         //Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
         //m_MyOutline.SetOutlineColor = lTempColor;
-        UniRx.Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => 
+        UniRx.Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => 
         {
             m_AnimatorPost.enabled = false;
         });
