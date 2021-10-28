@@ -75,8 +75,12 @@ public class CGameManager : MonoBehaviour
         m_HalfScreenWidth = (StaticGlobalDel.g_fcbaseWidth / 2.0f) * (lTempNewHWRatio / HWRatioPototype);
 
         m_Player = this.GetComponentInChildren<CPlayer>();
-
         m_MyResultUI = gameObject.GetComponentInChildren<ResultUI>();
+
+        if (m_MyResultUI != null)
+        {
+            m_MyResultUI.NextButton.onClick.AddListener(OnNext);
+        }
     }
 
     // Start is called before the first frame update
@@ -225,7 +229,7 @@ public class CGameManager : MonoBehaviour
                     {
                        // lTempGameSceneWindow.ShowObj(false);
                     }
-                    m_MyResultUI.ShowSuccessUI(2.0f);
+                    m_MyResultUI.ShowSuccessUI(5.0f);
                 }
                 break;
             case EState.eGameOver:

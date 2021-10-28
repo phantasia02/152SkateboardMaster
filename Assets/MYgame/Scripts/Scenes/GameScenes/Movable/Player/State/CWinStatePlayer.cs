@@ -41,26 +41,34 @@ public class CWinStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.position = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.position;
         m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.transform.rotation = m_MyPlayerMemoryShare.m_AnkleLSkateboard.transform.rotation;
 
-        m_DeltaTimeResetTime = 10.0f - lTempRotateTime * 0.5f;
-        m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 2.0f, 10.0f);
-
+        m_DeltaTimeResetTime = 5.0f - lTempRotateTime * 0.5f;
+        m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 1.0f, 10.0f);
+        Debug.Log($"m_DeltaTimeResetTime = {m_DeltaTimeResetTime}");
         EndPos.y = 0.1f;
         EndPos.z += 1.0f;
         Sequence TempSequence = DOTween.Sequence();
       //  TempSequence.AppendInterval(0.5f);
         TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(-m_ResetTim, lTempRotateTime * 0.5f).SetEase(Ease.Linear));
         TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotate(new Vector3(360.0f * (float)RotationsCount, 0.0f, 0.0f), lTempRotateTime, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        TempSequence.AppendCallback(() => { m_ResetTimeFlag = true; });
         TempSequence.AppendCallback(() => 
         {
+            m_ResetTimeFlag = true;
             m_MyGameManager.AllAudience.position = EndPos;
             m_MyGameManager.AllAudience.gameObject.SetActive(true);
             SetAnimationState(CAnimatorStateCtl.EState.eIdle);
-          //  m_MyGameManager.WinCamera.SetActive(true);
         });
+        TempSequence.AppendInterval(lTempJumpTime * 0.5f);
+        TempSequence.AppendCallback(() => 
+        {
+            ShowBuffAnkleLSkateboard(false);
+            ShowMoveFx(false);
+            SetAnimationState(CAnimatorStateCtl.EState.eWin);
+            m_MyGameManager.SetState( CGameManager.EState.eWinUI);
+        });
+        //TempSequence.AppendInterval(0.5f);
+
 
         Sequence TempSequenceCamera = DOTween.Sequence();
-        //TempSequenceCamera.AppendInterval(0.5f);
         TempSequenceCamera.AppendCallback(() => { m_MyGameManager.WinCamera.SetActive(true); });
         TempSequenceCamera.PlayForward();
 
