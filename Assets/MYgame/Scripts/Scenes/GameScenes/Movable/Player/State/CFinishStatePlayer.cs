@@ -22,7 +22,9 @@ public class CFinishStatePlayer : CPlayerStateBase
       //  Time.timeScale = 0.3f;
         m_MyPlayerMemoryShare.m_UpdateUI = false;
 
-        
+        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+        if (lTempGameSceneWindow != null)
+            lTempGameSceneWindow.ShowGamePlayUI(false);
     }
 
     protected override void updataState()

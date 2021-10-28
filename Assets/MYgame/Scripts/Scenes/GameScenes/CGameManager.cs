@@ -99,7 +99,29 @@ public class CGameManager : MonoBehaviour
 
         } while (!m_bInitOK);
 
-     
+        Observable.EveryUpdate().First(_ => Input.GetMouseButtonDown(0)).Subscribe( 
+        OnNext  => 
+        {
+            if (m_eCurState == EState.eReady)
+            {
+                SetState(EState.ePlay);
+
+                CReadyGameWindow lTempCReadyGameWindow = CReadyGameWindow.SharedInstance;
+                if (lTempCReadyGameWindow && lTempCReadyGameWindow.GetShow())
+                    lTempCReadyGameWindow.CloseShowUI();
+
+                CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+                if (lTempGameSceneWindow)
+                {
+                    lTempGameSceneWindow.ShowObj(true);
+                    lTempGameSceneWindow.ShowReadyUI(false);
+                }
+            }
+        },
+        OnCompleted =>{Debug.Log("OK");}
+        ).AddTo(this);
+
+        
     }
 
     // Update is called once per frame
@@ -117,12 +139,12 @@ public class CGameManager : MonoBehaviour
         {
             case EState.eReady:
                 {
-                    UsePlayTick();
+                 //   UsePlayTick();
                 }
                 break;
             case EState.ePlay:
                 {
-                    UsePlayTick();
+                   // UsePlayTick();
                 }
                 break;
             case EState.ePlayHold:
@@ -152,17 +174,6 @@ public class CGameManager : MonoBehaviour
                 break;
         }
     }
-
-    public void LateUpdate()
-    {
-
-        //m_PlayerFollowObj.transform.position = m_Player.transform.position;
-        //Vector3 lTempV3 = m_Player.transform.position;
-        //lTempV3.y += 15.0f;
-        //lTempV3.z += -7.5f;
-        //m_Camera.transform.position = Vector3.Lerp(m_Camera.transform.position, lTempV3, 0.95f);
-    }
-
 
     public void SetState(EState lsetState)
     {
@@ -211,17 +222,18 @@ public class CGameManager : MonoBehaviour
             case EState.eWinUI:
                 {
                     if (lTempGameSceneWindow)
-                        lTempGameSceneWindow.ShowObj(false);
-
+                    {
+                       // lTempGameSceneWindow.ShowObj(false);
+                    }
                     m_MyResultUI.ShowSuccessUI(2.0f);
                 }
                 break;
             case EState.eGameOver:
                 {
-                    if (lTempGameSceneWindow)
-                        lTempGameSceneWindow.ShowObj(false);
+                    //if (lTempGameSceneWindow)
+                    //    lTempGameSceneWindow.ShowObj(false);
 
-                    m_MyResultUI.ShowFailedUI(1.0f);
+                    //m_MyResultUI.ShowFailedUI(1.0f);
                 }
                 break;
         }
@@ -290,21 +302,21 @@ public class CGameManager : MonoBehaviour
 //#endif
 
 
-        if (m_eCurState == EState.eReady)
-        {
-            if (m_bDown)
-            {
-                SetState(EState.ePlay);
+        //if (m_eCurState == EState.eReady)
+        //{
+        //    if (m_bDown)
+        //    {
+        //        SetState(EState.ePlay);
 
-                CReadyGameWindow lTempCReadyGameWindow = CReadyGameWindow.SharedInstance;
-                if (lTempCReadyGameWindow && lTempCReadyGameWindow.GetShow())
-                    lTempCReadyGameWindow.CloseShowUI();
+        //        CReadyGameWindow lTempCReadyGameWindow = CReadyGameWindow.SharedInstance;
+        //        if (lTempCReadyGameWindow && lTempCReadyGameWindow.GetShow())
+        //            lTempCReadyGameWindow.CloseShowUI();
 
-                CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
-                if (lTempGameSceneWindow && !lTempGameSceneWindow.GetShow())
-                    lTempGameSceneWindow.ShowObj(true);
-            }
-        }
+        //        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+        //        if (lTempGameSceneWindow && !lTempGameSceneWindow.GetShow())
+        //            lTempGameSceneWindow.ShowObj(true);
+        //    }
+        //}
 
     }
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable

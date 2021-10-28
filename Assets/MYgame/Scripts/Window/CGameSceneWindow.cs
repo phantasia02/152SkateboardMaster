@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
 {
@@ -20,6 +21,8 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Image  m_MoveBar           = null;
     [SerializeField] Image  m_MapProgress       = null;
     [SerializeField] Image  m_FeverBar          = null;
+    [SerializeField] RectTransform m_ReadyUI    = null;
+    [SerializeField] RectTransform m_GamePlayUI = null;
 
     [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
 
@@ -105,5 +108,17 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         Val = Mathf.Clamp(Val, 0.0f, 1.0f);
 
         m_FeverBar.fillAmount = Val;
+    }
+
+    public void ShowReadyUI(bool show)
+    {
+        m_ReadyUI.gameObject.SetActive(show);
+    }
+
+    public void ShowGamePlayUI(bool show)
+    {
+        float EndVal = show ? 1.0f : 0.0f;
+        CanvasGroup lTempCanvasGroup = m_GamePlayUI.GetComponent<CanvasGroup>();
+        lTempCanvasGroup.DOFade(EndVal, 0.5f);
     }
 }

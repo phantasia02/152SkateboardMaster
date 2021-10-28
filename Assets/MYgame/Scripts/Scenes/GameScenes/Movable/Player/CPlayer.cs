@@ -148,7 +148,10 @@ public class CPlayer : CActor
     public void UpdateFeverScore()
     {
         float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
-        CGameSceneWindow.SharedInstance.SetFeverBar(lTemp);
+
+        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+        if (lTempGameSceneWindow != null)
+            lTempGameSceneWindow.SetFeverBar(lTemp);
     }
 
     // Update is called once per frame
@@ -173,7 +176,10 @@ public class CPlayer : CActor
         if (!m_MyPlayerMemoryShare.m_UpdateUI)
             return;
 
-        CGameSceneWindow.SharedInstance.SetMapProgress((float)(m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent / m_MyGameManager.EndLastSplineFollower.startPosition));
+
+        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+        if (lTempGameSceneWindow != null)
+            lTempGameSceneWindow.SetMapProgress((float)(m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent / m_MyGameManager.EndLastSplineFollower.startPosition));
     }
 
     public override void InputUpdata()
@@ -256,7 +262,10 @@ public class CPlayer : CActor
         lTempMoveY = lTempMoveY / m_MaxMoveDirSize;
 
         m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal += lTempMoveY;
-        CGameSceneWindow.SharedInstance.SetVal(m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal);
+
+        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+        if (lTempGameSceneWindow != null)
+            lTempGameSceneWindow.SetVal(m_MyPlayerMemoryShare.m_MyPlayer.AnimationVal);
     }
 
     public void SetMoveStyle(StaticGlobalDel.EMoveStyle lTempStyle)
