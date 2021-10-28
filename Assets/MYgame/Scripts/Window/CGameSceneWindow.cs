@@ -20,11 +20,16 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Button m_GoButton          = null;
     [SerializeField] Image  m_MoveBar           = null;
     [SerializeField] Image  m_MapProgress       = null;
-    [SerializeField] Image  m_FeverBar          = null;
+    [SerializeField] Image[] m_FeverBar          = null;
     [SerializeField] RectTransform m_ReadyUI    = null;
     [SerializeField] RectTransform m_GamePlayUI = null;
 
     [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
+
+    //const float
+    protected float m_CurFever      = 0.0f;
+    protected float m_TargetFever   = 0.0f;
+
 
     private void OnValidate()
     {
@@ -57,8 +62,18 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     // Update is called once per frame
     void Update()
     {
+        if (Mathf.Abs(m_CurFever - m_TargetFever) > 0.001f)
+        {
+            UpdateFeverBar();
+        }
     }
 
+    public void UpdateFeverBar()
+    {
+        float lTempCurFever = Mathf.Lerp(m_CurFever, m_TargetFever, Time.deltaTime * 2.0f);
+
+       
+    }
 
     public bool GetShow() { return m_ShowObj.activeSelf; }
     public void ShowObj(bool showObj)
@@ -103,11 +118,12 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         m_MapProgress.fillAmount = Val;
     }
 
-    public void SetFeverBar(float Val)
+    public void SetFeverBar(float Val, bool InstantUpdate = false)
     {
         Val = Mathf.Clamp(Val, 0.0f, 1.0f);
 
-        m_FeverBar.fillAmount = Val;
+        m_TargetFever = Val;
+        //m_FeverBar.fillAmount = Val;
     }
 
     public void ShowReadyUI(bool show)

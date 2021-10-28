@@ -119,6 +119,7 @@ public class CPlayer : CActor
 
         m_MaxMoveDirSize = Screen.width > Screen.height ? (float)Screen.width : (float)Screen.height;
         m_MaxMoveDirSize = m_MaxMoveDirSize / 5.0f;
+       
     }
 
     // Start is called before the first frame update
@@ -137,6 +138,7 @@ public class CPlayer : CActor
 
         m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos = m_AnkleLSkateboard.localPosition;
         m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate = m_AnkleLSkateboard.rotation;
+        UpdateFeverScore(true);
     }
 
     public void UpdateAnimationChangVal()
@@ -145,13 +147,13 @@ public class CPlayer : CActor
             m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
     }
 
-    public void UpdateFeverScore()
+    public void UpdateFeverScore(bool InstantUpdate = false)
     {
         float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
 
         CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
         if (lTempGameSceneWindow != null)
-            lTempGameSceneWindow.SetFeverBar(lTemp);
+            lTempGameSceneWindow.SetFeverBar(lTemp, InstantUpdate);
     }
 
     // Update is called once per frame

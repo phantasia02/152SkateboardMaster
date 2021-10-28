@@ -34,7 +34,7 @@ public class CWinStatePlayer : CPlayerStateBase
 
         float lTempRotateTime = lTempJumpTime * 0.8f;
         m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, -360.0f * (float)RotationsCount, 0.0f), lTempRotateTime, RotateMode.LocalAxisAdd);
-     //   m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 360.0f), lTempRotateTime, RotateMode.FastBeyond360);
+     //m_MyPlayerMemoryShare.m_AllObj.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 360.0f), lTempRotateTime, RotateMode.FastBeyond360);
         m_MyPlayerMemoryShare.m_MyMovable.transform.DOJump(EndPos, lTempJumpPower, 1, lTempJumpTime).SetEase(Ease.Linear);
 
         ShowBuffAnkleLSkateboard(true);
