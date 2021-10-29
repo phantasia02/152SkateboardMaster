@@ -150,10 +150,13 @@ public class CPlayer : CActor
     public void UpdateFeverScore(bool InstantUpdate = false)
     {
         float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
-
+        bool lTempmax = m_MyPlayerMemoryShare.m_UpdateFeverScore.Value == StaticGlobalDel.g_MaxFever;
         CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
         if (lTempGameSceneWindow != null)
+        {
             lTempGameSceneWindow.SetFeverBar(lTemp, InstantUpdate);
+            lTempGameSceneWindow.ShowMaxFeverBar(lTempmax);
+        }
     }
 
     // Update is called once per frame

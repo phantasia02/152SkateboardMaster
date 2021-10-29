@@ -114,7 +114,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         //for (int i = 0; i < m_MyPlayerMemoryShare.m_GoodFx.Count; i++)
         //    m_MyPlayerMemoryShare.m_GoodFx[i].SetActive(show);
 
-        m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
+     //   m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
         //  m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFx1, new Vector3(0.0f, 2.2f, 0.0f));
     }
 

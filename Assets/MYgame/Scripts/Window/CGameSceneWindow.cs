@@ -20,7 +20,8 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Button m_GoButton          = null;
     [SerializeField] Image  m_MoveBar           = null;
     [SerializeField] Image  m_MapProgress       = null;
-    [SerializeField] Image[] m_FeverBar          = null;
+    [SerializeField] Image[] m_FeverBar         = null;
+    [SerializeField] Image m_MaxFeverBar        = null;
     [SerializeField] RectTransform m_ReadyUI    = null;
     [SerializeField] RectTransform m_GamePlayUI = null;
 
@@ -63,16 +64,28 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     void Update()
     {
         if (Mathf.Abs(m_CurFever - m_TargetFever) > 0.001f)
-        {
             UpdateFeverBar();
-        }
+        else
+            m_CurFever = m_TargetFever;
+
+        if (m_MaxFeverBar.gameObject.activeSelf)
+            m_MaxFeverBar.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }
 
     public void UpdateFeverBar()
     {
-        float lTempCurFever = Mathf.Lerp(m_CurFever, m_TargetFever, Time.deltaTime * 2.0f);
+        float lTempCurFever = Mathf.Lerp(m_CurFever, m_TargetFever, Time.deltaTime * 5.0f);
+        int lTempIndex = (int)(lTempCurFever / 0.33f);
+        float lTempRatio = lTempCurFever % 0.33f;
+        lTempRatio = lTempRatio / 0.33f;
+     
+        for (int i = 0; i < lTempIndex; i++)
+            m_FeverBar[i].fillAmount = 1.0f;
 
-       
+        if (lTempIndex < m_FeverBar.Length)
+            m_FeverBar[lTempIndex].fillAmount = lTempRatio;
+
+        m_CurFever = lTempCurFever;
     }
 
     public bool GetShow() { return m_ShowObj.activeSelf; }
@@ -123,8 +136,16 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         Val = Mathf.Clamp(Val, 0.0f, 1.0f);
 
         m_TargetFever = Val;
+
+        if (InstantUpdate)
+        {
+            m_CurFever = m_TargetFever;
+            UpdateFeverBar();
+        }
         //m_FeverBar.fillAmount = Val;
     }
+
+    public void ShowMaxFeverBar(bool show){m_MaxFeverBar.gameObject.SetActive(show); }
 
     public void ShowReadyUI(bool show)
     {
