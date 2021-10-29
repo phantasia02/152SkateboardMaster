@@ -43,7 +43,7 @@ public class CWinStatePlayer : CPlayerStateBase
 
         m_DeltaTimeResetTime = 5.0f - lTempRotateTime * 0.5f;
         m_DeltaTimeResetTime = Mathf.Clamp(m_DeltaTimeResetTime, 1.0f, 10.0f);
-        Debug.Log($"m_DeltaTimeResetTime = {m_DeltaTimeResetTime}");
+        //Debug.Log($"m_DeltaTimeResetTime = {m_DeltaTimeResetTime}");
         EndPos.y = 0.1f;
         EndPos.z += 1.0f;
         Sequence TempSequence = DOTween.Sequence();

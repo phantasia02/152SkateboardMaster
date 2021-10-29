@@ -71,7 +71,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         if (lTempPostColor != lTempDoorPost.PostColor)
         {
             ShowFailFx(true);
-            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= 5;
+            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= StaticGlobalDel.g_MinusFever;
 
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eHit;
         }
@@ -85,7 +85,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
                 lTempDoorPost.ShowObj(false);
 
             ShowGoodFx(true);
-            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += 10;
+            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += StaticGlobalDel.g_AddFever;
         }
 
         if (lTempDoorPost.gameObject.activeSelf == false)
@@ -114,7 +114,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         //for (int i = 0; i < m_MyPlayerMemoryShare.m_GoodFx.Count; i++)
         //    m_MyPlayerMemoryShare.m_GoodFx[i].SetActive(show);
 
-     //   m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
+        m_MyPlayerMemoryShare.m_MyMovable.AnimatorStateCtl.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFxLight, new Vector3(0.0f, 1.6f, 0.0f));
         //  m_MyPlayerMemoryShare.m_MyMovable.transform.NewFxAddParentShow(CGGameSceneData.EAllFXType.eGoodFx1, new Vector3(0.0f, 2.2f, 0.0f));
     }
 

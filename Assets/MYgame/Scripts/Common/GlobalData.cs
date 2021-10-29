@@ -8,7 +8,7 @@ public class GlobalData : CSingletonMonoBehaviour<GlobalData>
     //public const string g_scLevelPrefix = "Level_";
     public const string g_GameScenesName = "GameScenes";
     public const string g_testScenesName = "test";
-    public const string g_ShowCurLevelNamePrefix = "Stage";
+    public const string g_ShowCurLevelNamePrefix = "STAGE";
 
 
 

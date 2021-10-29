@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UniRx;
+using UnityEngine.SceneManagement;
 
 public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
 {
@@ -25,13 +26,13 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Image m_MaxFeverBar        = null;
     [SerializeField] RectTransform m_ReadyUI    = null;
     [SerializeField] RectTransform m_GamePlayUI = null;
+    [SerializeField] TextMeshProUGUI m_CurLevelText = null;
 
     [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
 
     //const float
     protected float m_CurFever      = 0.0f;
     protected float m_TargetFever   = 0.0f;
-    protected Color m_TargetColor   = Color.white;
 
 
     private void OnValidate()
@@ -53,6 +54,10 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         m_GoButton.onClick.AddListener(() => {
             SetGoButton( EButtonState.eHide);
         });
+
+        CSaveManager lTempCSaveManager = CSaveManager.SharedInstance;
+        if (lTempCSaveManager)
+            m_CurLevelText.text = $"{ GlobalData.g_ShowCurLevelNamePrefix + (SceneManager.GetActiveScene().buildIndex).ToString()}";
     }
 
     // Start is called before the first frame update

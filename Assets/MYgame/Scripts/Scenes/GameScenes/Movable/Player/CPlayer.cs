@@ -32,7 +32,15 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public int                              m_EndIndex                  = 0;
     public StaticGlobalDel.EStyle           m_CurStyle                  = StaticGlobalDel.EStyle.eNormal;
     public List<Transform>                  m_MoveShowFx                = null;
+    public List<CLevelFx>                   m_LevelFx                   = null;
 };
+
+[System.Serializable]
+public class CLevelFx
+{
+    public List<Transform> m_Fx = new List<Transform>();
+    public bool show = false;
+}
 
 public class CPlayer : CActor
 {
@@ -44,10 +52,12 @@ public class CPlayer : CActor
 
     // ==================== SerializeField ===========================================
 
-    [SerializeField] protected Transform            m_GSkateboard           = null;
-    [SerializeField] protected Transform            m_AnkleLSkateboard      = null;
-    [SerializeField] protected Transform            m_BuffAnkleLSkateboard  = null;
-    [SerializeField] protected List<Transform>      m_MoveShowFx            = null;
+    [SerializeField] protected Transform                m_GSkateboard           = null;
+    [SerializeField] protected Transform                m_AnkleLSkateboard      = null;
+    [SerializeField] protected Transform                m_BuffAnkleLSkateboard  = null;
+    [SerializeField] protected List<Transform>          m_MoveShowFx            = null;
+
+    [SerializeField] protected List<CLevelFx> m_LevelFx               = null;
 
     // ==================== SerializeField ===========================================
 
@@ -109,6 +119,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_AnkleLSkateboard            = m_AnkleLSkateboard;
         m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard        = m_BuffAnkleLSkateboard;
         m_MyPlayerMemoryShare.m_MoveShowFx                  = m_MoveShowFx;
+        m_MyPlayerMemoryShare.m_LevelFx                     = m_LevelFx;
 
 
         m_MoveingHash = Animator.StringToHash("MoveVal");
@@ -149,6 +160,7 @@ public class CPlayer : CActor
 
     public void UpdateFeverScore(bool InstantUpdate = false)
     {
+        
         float lTemp = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
         bool lTempmax = m_MyPlayerMemoryShare.m_UpdateFeverScore.Value == StaticGlobalDel.g_MaxFever;
         CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
@@ -156,6 +168,22 @@ public class CPlayer : CActor
         {
             lTempGameSceneWindow.SetFeverBar(lTemp, InstantUpdate);
             lTempGameSceneWindow.ShowMaxFeverBar(lTempmax);
+        }
+
+        int lTempShowLevelIndex = m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / StaticGlobalDel.g_LeveFever - 1;
+        bool lTempOldCurShow = false;
+        bool lTempCurShow = false;
+        for (int i = 0; i < m_MyPlayerMemoryShare.m_LevelFx.Count; i++)
+        {
+            lTempOldCurShow = m_MyPlayerMemoryShare.m_LevelFx[i].show;
+            lTempCurShow = lTempShowLevelIndex >= i ? true : false;
+            if (lTempCurShow != lTempOldCurShow)
+            {
+                for (int x = 0; x < m_MyPlayerMemoryShare.m_LevelFx[i].m_Fx.Count; x++)
+                    m_MyPlayerMemoryShare.m_LevelFx[i].m_Fx[x].gameObject.SetActive(lTempCurShow);
+            }
+
+            m_MyPlayerMemoryShare.m_LevelFx[i].show = lTempCurShow;
         }
     }
 
@@ -285,7 +313,7 @@ public class CPlayer : CActor
         float lTempResult = lTempFeverScoreRatio;
 
         CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
-        m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count);
+        m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count - 1);
 
         m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
     }

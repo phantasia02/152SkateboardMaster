@@ -38,15 +38,16 @@ public class CFinishStatePlayer : CPlayerStateBase
        // Time.timeScale = 1.0f;
     }
 
-    public override void MouseDown()
-    {
-        float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
-        float lTempFeverScoreRatio = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
-        float lTempResult = (1.0f - lTempResultPercent / m_TotleRange) * 0.25f + lTempFeverScoreRatio * 0.75f;
+    //public override void MouseDown()
+    //{
+    //    float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
+    //    float lTempFeverScoreRatio = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
+    //    float lTempResult = (1.0f - lTempResultPercent / m_TotleRange) * 0.25f + lTempFeverScoreRatio * 0.75f;
 
-        CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
-        m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count);
+    //    CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
+    //    m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)(lTempAllScoringBox.AllScoringBox.Count - 1));
+      
 
-        m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
-    }
+    //    m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
+    //}
 }

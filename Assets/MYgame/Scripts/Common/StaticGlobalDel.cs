@@ -72,9 +72,10 @@ public static class StaticGlobalDel
 
 
     public const int g_MaxFever         = 100;
-    public const int g_AddFever         = 10;
-    public const int g_MinusFever       = 5;
-    public const int g_InitScoreFever   = 50;
+    public const int g_LeveFever        = 33;
+    public const int g_AddFever         = 11;
+    public const int g_MinusFever       = 11;
+    public const int g_InitScoreFever   = 11;
 
     public const float  g_fcbaseWidth                   = 1080.0f;
     public const float  g_fcbaseHeight                  = 2340.0f;
