@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UniRx;
 
 public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
 {
@@ -30,6 +31,7 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     //const float
     protected float m_CurFever      = 0.0f;
     protected float m_TargetFever   = 0.0f;
+    protected Color m_TargetColor   = Color.white;
 
 
     private void OnValidate()
@@ -56,7 +58,6 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
 
@@ -67,9 +68,6 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
             UpdateFeverBar();
         else
             m_CurFever = m_TargetFever;
-
-        if (m_MaxFeverBar.gameObject.activeSelf)
-            m_MaxFeverBar.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }
 
     public void UpdateFeverBar()
@@ -142,14 +140,28 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
             m_CurFever = m_TargetFever;
             UpdateFeverBar();
         }
-        //m_FeverBar.fillAmount = Val;
+    }
+    Tween tween = null;
+    public void ShowMaxFeverBar(bool show)
+    {
+        m_MaxFeverBar.gameObject.SetActive(show);
+
+        if (show)
+            DoMaxFeverBarColor();
     }
 
-    public void ShowMaxFeverBar(bool show){m_MaxFeverBar.gameObject.SetActive(show); }
+    public void DoMaxFeverBarColor()
+    {
+        tween = m_MaxFeverBar.DOColor(new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)), 0.1f).SetEase( Ease.Linear);
+        if (m_MaxFeverBar.gameObject.activeSelf)
+            tween.OnComplete(() => DoMaxFeverBarColor());
+    }
 
     public void ShowReadyUI(bool show)
     {
         m_ReadyUI.gameObject.SetActive(show);
+
+
     }
 
     public void ShowGamePlayUI(bool show)
