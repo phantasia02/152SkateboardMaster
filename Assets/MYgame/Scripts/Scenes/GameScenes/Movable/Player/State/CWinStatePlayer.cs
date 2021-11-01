@@ -20,7 +20,7 @@ public class CWinStatePlayer : CPlayerStateBase
 
         CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
         float lTempJumpPower = (float)m_MyPlayerMemoryShare.m_EndIndex * 2.0f + 8.0f;
-        float lTempJumpTime = (float)m_MyPlayerMemoryShare.m_EndIndex * 0.8f;
+        float lTempJumpTime = (float)m_MyPlayerMemoryShare.m_EndIndex * 0.6f;
         lTempJumpTime = Mathf.Max(2.0f, lTempJumpTime);
         int RotationsCount = Mathf.FloorToInt(lTempJumpTime * 0.5f);
         RotationsCount = Mathf.Max(RotationsCount, 1);
@@ -57,7 +57,7 @@ public class CWinStatePlayer : CPlayerStateBase
             m_MyGameManager.AllAudience.gameObject.SetActive(true);
             SetAnimationState(CAnimatorStateCtl.EState.eIdle);
         });
-        TempSequence.AppendInterval(lTempJumpTime * 0.5f);
+        TempSequence.AppendInterval(m_ResetTim * 0.3f);
         TempSequence.AppendCallback(() => 
         {
             ShowBuffAnkleLSkateboard(false);

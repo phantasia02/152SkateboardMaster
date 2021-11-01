@@ -1,5 +1,5 @@
 {
-	"scopedRegistries": [
+  "scopedRegistries": [
     {
       "name": "Arvtesh",
       "url": "https://registry.npmjs.org/",
@@ -9,8 +9,6 @@
     }
   ],
   "dependencies": {
-    "com.unityfx.outline": "0.8.3",
-    "com.unityfx.outline.urp": "0.3.0",
     "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
     "com.unity.cinemachine": "2.6.10",
     "com.unity.collab-proxy": "1.9.0",
@@ -22,6 +20,8 @@
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.4.8",
     "com.unity.ugui": "1.0.0",
+    "com.unityfx.outline": "0.8.4",
+    "com.unityfx.outline.urp": "0.4.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

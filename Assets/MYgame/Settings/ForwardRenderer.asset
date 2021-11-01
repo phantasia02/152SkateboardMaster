@@ -131,7 +131,7 @@ MonoBehaviour:
     passOperation: 0
     failOperation: 0
     zFailOperation: 0
-  m_ShadowTransparentReceive: 1
+  m_ShadowTransparentReceive: 0
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
 --- !u!114 &3012063624037660958
@@ -161,7 +161,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 128
     _renderingLayerMask: 59
-  _renderPassEvent: 450
+  _renderPassEvent: 400
   _shaderPassNames: []
 --- !u!114 &7143843361487901758
 MonoBehaviour:
@@ -190,5 +190,5 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     _renderingLayerMask: 1
-  _renderPassEvent: 250
+  _renderPassEvent: 400
   _shaderPassNames: []
