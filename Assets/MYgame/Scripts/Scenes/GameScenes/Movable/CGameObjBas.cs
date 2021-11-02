@@ -8,7 +8,8 @@ public abstract class CGameObjBas : MonoBehaviour
     {
         eMovable            = 0,
         eDoorPost           = 1,
-        eScoringBox         = 2,
+        eDoorGroupPost      = 2,
+        eScoringBox         = 3,
         eMax
     }
 

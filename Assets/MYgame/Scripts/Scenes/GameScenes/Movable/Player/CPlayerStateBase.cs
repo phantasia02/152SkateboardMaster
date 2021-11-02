@@ -85,7 +85,7 @@ public abstract class CPlayerStateBase : CMovableStatePototype
                 lTempDoorPost.ShowObj(false);
 
             ShowGoodFx(true);
-            m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += StaticGlobalDel.g_AddFever;
+         //   m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += StaticGlobalDel.g_AddFever;
         }
 
         if (lTempDoorPost.gameObject.activeSelf == false)

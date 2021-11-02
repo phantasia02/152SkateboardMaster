@@ -14,10 +14,6 @@ public class CDataNext
 
 public class CDoorPost : CGameObjBas
 {
-
-
-    public const string CAnimatorNamtTag = "MoveBlendTree";
-
     public override EObjType ObjType() { return EObjType.eDoorPost; }
 
     // ==================== SerializeField ===========================================
@@ -38,9 +34,9 @@ public class CDoorPost : CGameObjBas
     [SerializeField] protected CDataNext m_NextData;
     public CDataNext NextData { get { return m_NextData; } }
 
-
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
+    protected CDoorGroupPost m_MyDoorGroupPost = null;
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
     protected int m_CurTouch = 0;
@@ -58,26 +54,27 @@ public class CDoorPost : CGameObjBas
         get { return m_CurTouch; }
     }
 
-    
-
     protected override void Awake()
     {
+        base.Awake();
         m_AnimatorPost = this.GetComponentInChildren<Animator>();
         // m_MyOutline = this.GetComponentInChildren<Outline>();
         m_MyObjRenderer.gameObject.layer = CGGameSceneData.SharedInstance.m_AllLayerOutlineColor[(int)m_PostColor];
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
-       
+        m_MyDoorGroupPost = this.GetComponentInParent<CDoorGroupPost>();
+        if (m_MyDoorGroupPost != null)
+            m_TouchMaxCount = -1;
         //float lTemppostVal = 0.0f;
 
-        //if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
-        //    lTemppostVal = 1.0f;
-        //else if (m_PostColor == CGGameSceneData.EPostColor.eGreenPost)
-        //    lTemppostVal = 0.5f;
-        //else if (m_PostColor == CGGameSceneData.EPostColor.eOrangePost)
-        //    lTemppostVal = 0.0f;
+            //if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
+            //    lTemppostVal = 1.0f;
+            //else if (m_PostColor == CGGameSceneData.EPostColor.eGreenPost)
+            //    lTemppostVal = 0.5f;
+            //else if (m_PostColor == CGGameSceneData.EPostColor.eOrangePost)
+            //    lTemppostVal = 0.0f;
 
-        //m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
+            //m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
     }
 
     // Start is called before the first frame update
@@ -103,4 +100,13 @@ public class CDoorPost : CGameObjBas
     {
         this.gameObject.SetActive(show);
     }
+
+    public void TouchOK(CPlayer lTempAddScore)
+    {
+        if (m_MyDoorGroupPost == null)
+            lTempAddScore.FeverScoreVal += StaticGlobalDel.g_AddFever;
+    }
+
+    public void OnEnable(){m_MyDoorGroupPost.AddDoorPost(this);}
+    public void OnDisable(){m_MyDoorGroupPost.RemoveDoorPost(this);}
 }
