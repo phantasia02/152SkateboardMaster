@@ -479,6 +479,10 @@ MonoBehaviour:
   m_GoButton: {fileID: 7720744526148305620}
   m_MoveBar: {fileID: 4735287623287665877}
   m_MapProgress: {fileID: 6777665246792600475}
+  m_SkateboardImage:
+  - {fileID: 8567972168994785067}
+  - {fileID: 2981650630320856395}
+  - {fileID: 7311164650669678643}
   m_FeverBar:
   - {fileID: 8105585514271932870}
   - {fileID: 7718249485340491416}

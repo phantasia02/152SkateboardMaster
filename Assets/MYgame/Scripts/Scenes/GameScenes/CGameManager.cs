@@ -53,9 +53,9 @@ public class CGameManager : MonoBehaviour
 
     [VarRename(new string[] { "Top", "Middle", "Down" })]
     [SerializeField] protected CGGameSceneData.EPostColor[] m_UIPostColor = new CGGameSceneData.EPostColor[3];
+    public CGGameSceneData.EPostColor[] UIPostColor { get { return m_UIPostColor; } }
 
     // ==================== SerializeField ===========================================
-    public CGGameSceneData.EPostColor[] UIPostColor { get { return m_UIPostColor; } }
 
 
     private EState m_eCurState = EState.eReady;

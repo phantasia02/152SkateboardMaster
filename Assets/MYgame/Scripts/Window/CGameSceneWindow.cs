@@ -22,6 +22,7 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     [SerializeField] Button m_GoButton          = null;
     [SerializeField] Image  m_MoveBar           = null;
     [SerializeField] Image  m_MapProgress       = null;
+    [SerializeField] Image[] m_SkateboardImage    = null;
     [SerializeField] Image[] m_FeverBar         = null;
     [SerializeField] Image m_MaxFeverBar        = null;
     [SerializeField] RectTransform m_ReadyUI    = null;
@@ -56,8 +57,25 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         });
 
         CSaveManager lTempCSaveManager = CSaveManager.SharedInstance;
-        if (lTempCSaveManager)
+        if (lTempCSaveManager != null)
             m_CurLevelText.text = $"{ GlobalData.g_ShowCurLevelNamePrefix + (SceneManager.GetActiveScene().buildIndex).ToString()}";
+
+        CGameManager lTempGameManager = this.GetComponentInParent<CGameManager>();
+        if (lTempGameManager == null)
+            return;
+
+        CGGameSceneData lTempGameSceneData = CGGameSceneData.SharedInstance;
+        if (lTempGameSceneData == null)
+            return;
+
+        Color lTempColor = Color.white;
+        int TempUIPostColorIndex = 0;
+        for (int i = 0; i < lTempGameManager.UIPostColor.Length; i++)
+        {
+            TempUIPostColorIndex = (int)lTempGameManager.UIPostColor[i];
+            m_SkateboardImage[i].color = lTempGameSceneData.m_AllPostColor[TempUIPostColorIndex];
+        }
+        
     }
 
     // Start is called before the first frame update
