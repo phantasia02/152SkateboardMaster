@@ -87,7 +87,7 @@ public class CDoorPost : CGameObjBas
         m_AnimatorPost.SetTrigger(lTempTag);
         //Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
         //m_MyOutline.SetOutlineColor = lTempColor;
-        UniRx.Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => 
+        UniRx.Observable.Timer(TimeSpan.FromSeconds(5.5f)).Subscribe(_ =>
         {
             m_AnimatorPost.enabled = false;
         });
