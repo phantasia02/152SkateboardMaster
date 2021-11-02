@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CJumpDownStatePlayer : CPlayerStateBase
 {
     public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eJumpDown; }
+    public bool ResetTime = false;
 
     public CJumpDownStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -32,8 +33,9 @@ public class CJumpDownStatePlayer : CPlayerStateBase
         //TempSequence.AppendInterval(0.5f);
         TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(-2.0f, 0.5f).SetEase(Ease.Linear));
         TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotate(new Vector3(0.0f, 360.0f, 360.0f), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos.x, 0.8f).SetEase(Ease.Linear));
-        TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.8f).SetEase(Ease.Linear));
+        TempSequence.AppendCallback(() => { ResetTime = true; });
+        //TempSequence.Append(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DOLocalMoveY(m_MyPlayerMemoryShare.m_AnkleLSkateboardLocalpos.x, 0.8f).SetEase(Ease.Linear));
+        //TempSequence.Join(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.DORotateQuaternion(m_MyPlayerMemoryShare.m_AnkleLSkateboardRotate, 0.8f).SetEase(Ease.Linear));
         TempSequence.SetUpdate(true);
         TempSequence.PlayForward();
 
@@ -42,6 +44,12 @@ public class CJumpDownStatePlayer : CPlayerStateBase
 
     protected override void updataState()
     {
+        if (ResetTime)
+        {
+            m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localPosition = Vector3.Lerp(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localPosition, m_MyPlayerMemoryShare.m_AnkleLSkateboard.localPosition, Time.deltaTime * 5.0f);
+            m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localRotation = Quaternion.Lerp(m_MyPlayerMemoryShare.m_BuffAnkleLSkateboard.localRotation, m_MyPlayerMemoryShare.m_AnkleLSkateboard.localRotation, Time.deltaTime * 5.0f);
+        }
+
     }
 
     protected override void OutState()

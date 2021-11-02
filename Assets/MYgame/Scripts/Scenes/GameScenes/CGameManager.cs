@@ -229,7 +229,7 @@ public class CGameManager : MonoBehaviour
                     {
                        // lTempGameSceneWindow.ShowObj(false);
                     }
-                    m_MyResultUI.ShowSuccessUI(5.0f);
+                    m_MyResultUI.ShowSuccessUI(4.0f);
                 }
                 break;
             case EState.eGameOver:

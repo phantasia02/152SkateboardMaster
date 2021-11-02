@@ -172,7 +172,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: PinkPos
     m_Type: 9
@@ -270,10 +270,10 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -240071511769362327}
-    m_Position: {x: 400, y: 510, z: 0}
+    m_Position: {x: 370, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4405013624105064326}
-    m_Position: {x: 390, y: 340, z: 0}
+    m_Position: {x: 370, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5176851746830237922}
     m_Position: {x: 370, y: 200, z: 0}
