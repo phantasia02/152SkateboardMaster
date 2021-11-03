@@ -314,6 +314,7 @@ public abstract class CMovableBase : CGameObjBas
 
     public void SetStateIndex(StaticGlobalDel.EMovableState pamState, int index)
     {
+
         DataState lTempDataState = m_AllState[(int)pamState];
         if (lTempDataState == null)
             return;

@@ -33,6 +33,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public StaticGlobalDel.EStyle           m_CurStyle                  = StaticGlobalDel.EStyle.eNormal;
     public List<Transform>                  m_MoveShowFx                = null;
     public List<CLevelFx>                   m_LevelFx                   = null;
+    public CDoorPost                        m_NextDoorPost              = null;
 };
 
 [System.Serializable]
@@ -97,6 +98,7 @@ public class CPlayer : CActor
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNormalStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpGroupPostStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpDownStatePlayer(this));
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eFinish].AllThisState.Add(new CFinishStatePlayer(this));

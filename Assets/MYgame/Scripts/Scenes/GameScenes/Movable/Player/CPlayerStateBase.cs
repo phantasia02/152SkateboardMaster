@@ -38,6 +38,8 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     {
         if (lsetDoorPost.NextData.m_State != StateType())
             m_MyPlayerMemoryShare.m_MyMovable.ChangState = lsetDoorPost.NextData.m_State;
+        else
+            SameStateUpdataPlay();
     }
 
     public CGGameSceneData.EPostColor CurPostColor()
@@ -68,6 +70,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         StaticGlobalDel.EStyle lTempCurStyle = m_MyPlayerMemoryShare.m_CurStyle;
 
 
+        if (lTempDoorPost.TouchMaxCount == lTempDoorPost.CurTouch)
+            lTempDoorPost.ShowObj(false);
+
         if (lTempPostColor != lTempDoorPost.PostColor)
         {
             ShowFailFx(true);
@@ -77,9 +82,12 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         }
         else
         {
+            m_MyPlayerMemoryShare.m_NextDoorPost = lTempDoorPost.NextDoorPost;
             SetStateStyle(lTempDoorPost.NextData.m_Style);
             ConfirmDoorNextState(lTempDoorPost);
             m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
+            lTempDoorPost.TouchOK(m_MyPlayerMemoryShare.m_MyPlayer);
+
 
             if (lTempDoorPost.TouchMaxCount == -1)
                 lTempDoorPost.ShowObj(false);
@@ -129,5 +137,9 @@ public abstract class CPlayerStateBase : CMovableStatePototype
     {
         for (int i = 0; i < m_MyPlayerMemoryShare.m_MoveShowFx.Count; i++)
             m_MyPlayerMemoryShare.m_MoveShowFx[i].gameObject.SetActive(show);
+    }
+
+    protected virtual void SameStateUpdataPlay()
+    {
     }
 }

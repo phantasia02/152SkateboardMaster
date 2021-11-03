@@ -43,8 +43,10 @@ public static class StaticGlobalDel
 
     public enum EStyle
     {
-        eNormal = 0,
-        eSlow = 1,
+        eNormal     = 0,
+        eSlow       = 1,
+        eGroupPost  = 2,
+        
         eMax
     }
 

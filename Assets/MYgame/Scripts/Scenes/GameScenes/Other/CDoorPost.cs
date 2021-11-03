@@ -37,6 +37,15 @@ public class CDoorPost : CGameObjBas
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
     protected CDoorGroupPost m_MyDoorGroupPost = null;
+
+    protected CDoorPost m_NextDoorPost = null;
+    public CDoorPost NextDoorPost
+    {
+        set { m_NextDoorPost = value; }
+        get { return m_NextDoorPost; }
+    }
+
+
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
     protected int m_CurTouch = 0;
@@ -107,6 +116,16 @@ public class CDoorPost : CGameObjBas
             lTempAddScore.FeverScoreVal += StaticGlobalDel.g_AddFever;
     }
 
-    public void OnEnable(){m_MyDoorGroupPost.AddDoorPost(this);}
-    public void OnDisable(){m_MyDoorGroupPost.RemoveDoorPost(this);}
+    public void OnEnable()
+    {
+        m_MyGameManager.AddDoorPost(this);
+
+        if (m_MyDoorGroupPost != null)
+            m_MyDoorGroupPost.AddDoorPost(this);
+    }
+    public void OnDisable()
+    {
+        if (m_MyDoorGroupPost != null)
+            m_MyDoorGroupPost.RemoveDoorPost(this);
+    }
 }

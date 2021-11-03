@@ -57,6 +57,8 @@ public class CGameManager : MonoBehaviour
 
     // ==================== SerializeField ===========================================
 
+    public List<CDoorPost> m_AllDoorPost = new List<CDoorPost>();
+    public List<CDoorPost> AllDoorPost { get { return m_AllDoorPost; } }
 
     private EState m_eCurState = EState.eReady;
     public EState CurState { get { return m_eCurState; } }
@@ -125,7 +127,13 @@ public class CGameManager : MonoBehaviour
         OnCompleted =>{Debug.Log("OK");}
         ).AddTo(this);
 
-        
+        m_AllDoorPost.Sort((ObjX, ObjY) =>
+        {
+            return ObjX.transform.position.z.CompareTo(ObjY.transform.position.z);
+        });
+
+        for (int i = m_AllDoorPost.Count - 1; i > 0; i--)
+            m_AllDoorPost[i - 1].NextDoorPost = m_AllDoorPost[i];
     }
 
     // Update is called once per frame
@@ -349,4 +357,7 @@ public class CGameManager : MonoBehaviour
     {
         m_ChangeScenes.ResetScene();
     }
+
+    public void AddDoorPost(CDoorPost lAddDoorPost) { m_AllDoorPost.Add(lAddDoorPost); }
+    public void RemoveDoorPost(CDoorPost lRemoveDoorPost){m_AllDoorPost.Remove(lRemoveDoorPost);}
 }
