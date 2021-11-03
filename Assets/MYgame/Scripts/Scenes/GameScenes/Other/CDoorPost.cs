@@ -14,6 +14,8 @@ public class CDataNext
 
 public class CDoorPost : CGameObjBas
 {
+    static readonly int shPropColor = Shader.PropertyToID("_BaseColor");
+
     public override EObjType ObjType() { return EObjType.eDoorPost; }
 
     // ==================== SerializeField ===========================================
@@ -24,7 +26,9 @@ public class CDoorPost : CGameObjBas
     //[SerializeField] protected StaticGlobalDel.EMovableState m_NextState = StaticGlobalDel.EMovableState.eMove;
     //public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
 
-    [SerializeField] protected Renderer m_MyObjRenderer = null;
+    //  [SerializeField] protected Renderer m_MyObjRenderer = null;
+    [SerializeField] protected GameObject[] m_AllPosObj = null;
+    [SerializeField] protected MeshRenderer m_SpecialPosObj = null;
 
     [SerializeField] protected int m_TouchMaxCount = -1;
     public int TouchMaxCount { get { return m_TouchMaxCount; } }
@@ -33,6 +37,9 @@ public class CDoorPost : CGameObjBas
     //public StaticGlobalDel.EMovableState NextState { get { return m_NextState; } }
     [SerializeField] protected CDataNext m_NextData;
     public CDataNext NextData { get { return m_NextData; } }
+
+    [SerializeField]protected StaticGlobalDel.EMoveStyle m_MyMoveStyle = StaticGlobalDel.EMoveStyle.eNormal;
+    [SerializeField]protected ColorType m_MyColorType = null;
 
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
@@ -45,6 +52,16 @@ public class CDoorPost : CGameObjBas
         get { return m_NextDoorPost; }
     }
 
+    MaterialPropertyBlock mpb;
+    public MaterialPropertyBlock Mpb
+    {
+        get
+        {
+            if (mpb == null)
+                mpb = new MaterialPropertyBlock();
+            return mpb;
+        }
+    }
 
     protected Animator m_AnimatorPost = null;
     protected Outline m_MyOutline = null;
@@ -63,40 +80,24 @@ public class CDoorPost : CGameObjBas
         get { return m_CurTouch; }
     }
 
+    private void OnValidate(){UpdatePos(); }
+
     protected override void Awake()
     {
         base.Awake();
-        m_AnimatorPost = this.GetComponentInChildren<Animator>();
-        // m_MyOutline = this.GetComponentInChildren<Outline>();
-        m_MyObjRenderer.gameObject.layer = CGGameSceneData.SharedInstance.m_AllLayerOutlineColor[(int)m_PostColor];
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
         m_MyDoorGroupPost = this.GetComponentInParent<CDoorGroupPost>();
         if (m_MyDoorGroupPost != null)
             m_TouchMaxCount = -1;
+
+        UpdatePos();
         //float lTemppostVal = 0.0f;
-
-            //if (m_PostColor == CGGameSceneData.EPostColor.eYellowPost)
-            //    lTemppostVal = 1.0f;
-            //else if (m_PostColor == CGGameSceneData.EPostColor.eGreenPost)
-            //    lTemppostVal = 0.5f;
-            //else if (m_PostColor == CGGameSceneData.EPostColor.eOrangePost)
-            //    lTemppostVal = 0.0f;
-
-            //m_AnimatorPost.SetFloat("MoveVal", lTemppostVal);
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        string lTempTag = m_AnimationTag[(int)m_PostColor];
-        m_AnimatorPost.SetTrigger(lTempTag);
-        //Color lTempColor = CGGameSceneData.SharedInstance.PostColorToColor(m_PostColor);
-        //m_MyOutline.SetOutlineColor = lTempColor;
-        UniRx.Observable.Timer(TimeSpan.FromSeconds(5.5f)).Subscribe(_ =>
-        {
-            m_AnimatorPost.enabled = false;
-        });
     }
 
     // Update is called once per frame
@@ -127,5 +128,20 @@ public class CDoorPost : CGameObjBas
     {
         if (m_MyDoorGroupPost != null)
             m_MyDoorGroupPost.RemoveDoorPost(this);
+    }
+
+    public void UpdatePos()
+    {
+        for (int i = 0; i < m_AllPosObj.Length; i++)
+            m_AllPosObj[i].SetActive(false);
+
+        if (m_MyMoveStyle == StaticGlobalDel.EMoveStyle.eNormal)
+            m_AllPosObj[(int)m_PostColor].SetActive(true);
+        else
+        {
+            m_SpecialPosObj.gameObject.SetActive(true);
+            Mpb.SetColor(shPropColor, m_MyColorType.m_AllPostColor[(int)m_PostColor]);
+            m_SpecialPosObj.SetPropertyBlock(Mpb);
+        }
     }
 }
