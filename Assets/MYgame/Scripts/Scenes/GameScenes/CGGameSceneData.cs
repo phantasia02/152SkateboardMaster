@@ -34,12 +34,6 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     [SerializeField]  public GameObject[]    m_AllFX                 = null;
     [SerializeField]  public GameObject[]    m_AllOtherObj           = null;
     [SerializeField]  public Color[]         m_AllPostColor          = null;
-    readonly public int[] m_AllLayerOutlineColor = {
-        (int)StaticGlobalDel.ELayerIndex.eYellow,
-        (int)StaticGlobalDel.ELayerIndex.ePink,
-        (int)StaticGlobalDel.ELayerIndex.eBlue,
-        (int)StaticGlobalDel.ELayerIndex.eGreen,
-        (int)StaticGlobalDel.ELayerIndex.eOrange };
 
 
     private void Awake()

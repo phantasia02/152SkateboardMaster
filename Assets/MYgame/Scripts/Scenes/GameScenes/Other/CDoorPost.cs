@@ -30,6 +30,8 @@ public class CDoorPost : CGameObjBas
     [SerializeField] protected GameObject[] m_AllPosObj = null;
     [SerializeField] protected MeshRenderer m_SpecialPosObj = null;
 
+
+
     [SerializeField] protected int m_TouchMaxCount = -1;
     public int TouchMaxCount { get { return m_TouchMaxCount; } }
 
@@ -44,6 +46,12 @@ public class CDoorPost : CGameObjBas
     readonly protected string[] m_AnimationTag = { "YellowPos", "PinkPos", "BluePos", "GreenPos", "OrangePos" };
     // ==================== SerializeField ===========================================
     protected CDoorGroupPost m_MyDoorGroupPost = null;
+
+    public GameObject m_CurObjMesh = null;
+    public GameObject CurObjMesh
+    {
+        get{return m_CurObjMesh;}
+    }
 
     protected CDoorPost m_NextDoorPost = null;
     public CDoorPost NextDoorPost
@@ -88,8 +96,8 @@ public class CDoorPost : CGameObjBas
         string lTempTag = m_AnimationTag[(int)m_PostColor];
 
         m_MyDoorGroupPost = this.GetComponentInParent<CDoorGroupPost>();
-        if (m_MyDoorGroupPost != null)
-            m_TouchMaxCount = -1;
+        //if (m_MyDoorGroupPost != null)
+        //    m_TouchMaxCount = -1;
 
         UpdatePos();
         //float lTemppostVal = 0.0f;
@@ -136,12 +144,18 @@ public class CDoorPost : CGameObjBas
             m_AllPosObj[i].SetActive(false);
 
         if (m_MyMoveStyle == StaticGlobalDel.EMoveStyle.eNormal)
+        {
+            m_CurObjMesh = m_AllPosObj[(int)m_PostColor];
             m_AllPosObj[(int)m_PostColor].SetActive(true);
+        }
         else
         {
+            m_CurObjMesh = m_SpecialPosObj.gameObject;
             m_SpecialPosObj.gameObject.SetActive(true);
             Mpb.SetColor(shPropColor, m_MyColorType.m_AllPostColor[(int)m_PostColor]);
             m_SpecialPosObj.SetPropertyBlock(Mpb);
         }
+
+
     }
 }

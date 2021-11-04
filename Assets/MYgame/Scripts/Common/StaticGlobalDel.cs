@@ -33,11 +33,9 @@ public static class StaticGlobalDel
     public enum ELayerIndex
     {
         eFloor          = 6,
-        eYellow         = 7,
-        ePink           = 8,
-        eBlue           = 9,
-        eGreen          = 10,
-        eOrange         = 11,
+        ePlayer         = 7,
+        eOBJDestruction = 8,
+
         eMax
     }
 
@@ -69,7 +67,9 @@ public static class StaticGlobalDel
     //public const string TagTrafficLightGroup    = "TagTrafficLightGroup";
     //public const string TagFloor                = "TagFloor";
 
-    public const int g_FloorMask = 1 << (int)ELayerIndex.eFloor;
+    public const int g_FloorMask            = 1 << (int)ELayerIndex.eFloor;
+    public const int g_PlayerMask           = 1 << (int)ELayerIndex.ePlayer;
+    public const int g_OBJDestructionMask   = 1 << (int)ELayerIndex.eOBJDestruction;
 
 
 

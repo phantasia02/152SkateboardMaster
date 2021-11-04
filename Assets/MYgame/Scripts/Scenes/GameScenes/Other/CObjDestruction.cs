@@ -22,16 +22,11 @@ public class CObjDestruction : MonoBehaviour
 
     void Start()
     {
-   
+      
     }
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    DestroyMesh();
-        //}
-
     }
 
     public void DestroyMesh()
@@ -273,6 +268,7 @@ public class CObjDestruction : MonoBehaviour
             GameObject.transform.position = original.transform.position;
             GameObject.transform.rotation = original.transform.rotation;
             GameObject.transform.localScale = original.transform.localScale;
+            GameObject.layer = (int)StaticGlobalDel.ELayerIndex.eOBJDestruction;
 
             var mesh = new Mesh();
             mesh.name = original.GetComponent<MeshFilter>().mesh.name;
@@ -296,7 +292,7 @@ public class CObjDestruction : MonoBehaviour
 
             var rigidbody = GameObject.AddComponent<Rigidbody>();
             rigidbody.mass = 1.0f;
-            rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            rigidbody.constraints =  RigidbodyConstraints.None;
 
             Destroy(GameObject, UnityEngine.Random.Range(3f, 5f));
         }

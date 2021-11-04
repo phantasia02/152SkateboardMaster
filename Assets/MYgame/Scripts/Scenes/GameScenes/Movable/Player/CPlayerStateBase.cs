@@ -70,11 +70,20 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         StaticGlobalDel.EStyle lTempCurStyle = m_MyPlayerMemoryShare.m_CurStyle;
 
 
-        if (lTempDoorPost.TouchMaxCount == lTempDoorPost.CurTouch)
-            lTempDoorPost.ShowObj(false);
+        //if (lTempDoorPost.TouchMaxCount == lTempDoorPost.CurTouch)
+        //    lTempDoorPost.ShowObj(false);
 
         if (lTempPostColor != lTempDoorPost.PostColor)
         {
+            if (lTempDoorPost.TouchMaxCount == lTempDoorPost.CurTouch)
+            {
+                CObjDestruction lTempCObjDestruction = lTempDoorPost.CurObjMesh.AddComponent<CObjDestruction>();
+                lTempCObjDestruction.CutCascades = 5;
+                lTempCObjDestruction.ExplodeForce = 100;
+                lTempCObjDestruction.DestroyMesh();
+                lTempDoorPost.ShowObj(false);
+            }
+
             ShowFailFx(true);
             m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal -= StaticGlobalDel.g_MinusFever;
 
@@ -89,8 +98,8 @@ public abstract class CPlayerStateBase : CMovableStatePototype
             lTempDoorPost.TouchOK(m_MyPlayerMemoryShare.m_MyPlayer);
 
 
-            if (lTempDoorPost.TouchMaxCount == -1)
-                lTempDoorPost.ShowObj(false);
+           // if (lTempDoorPost.TouchMaxCount == -1 || lTempDoorPost.TouchMaxCount == lTempDoorPost.CurTouch)
+            lTempDoorPost.ShowObj(false);
 
             ShowGoodFx(true);
          //   m_MyPlayerMemoryShare.m_MyPlayer.FeverScoreVal += StaticGlobalDel.g_AddFever;

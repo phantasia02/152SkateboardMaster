@@ -15,7 +15,7 @@ public class CHitJumpStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
-        m_MyPlayerMemoryShare.m_AddSpeedSecond = 20.0f;
+        m_MyPlayerMemoryShare.m_AddSpeedSecond = 40.0f;
         m_MyPlayerMemoryShare.m_MyPlayer.SetMoveBuff(CMovableBase.ESpeedBuff.eHit, 0.0f);
 
         m_MyPlayerMemoryShare.m_PlayerFollwer.motion.applyPositionY = false;
