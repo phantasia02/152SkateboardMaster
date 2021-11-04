@@ -31,6 +31,8 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
 
     [SerializeField] [Range(0.0f, 1.0f)] protected float m_InitAnimationVal = 0.5f;
 
+    [SerializeField] RectTransform m_TutorialHand       = null;
+    Tweener m_BuffTutorialHandDoTweener = null;
     //const float
     protected float m_CurFever      = 0.0f;
     protected float m_TargetFever   = 0.0f;
@@ -75,7 +77,10 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
             TempUIPostColorIndex = (int)lTempGameManager.UIPostColor[i];
             m_SkateboardImage[i].color = lTempGameSceneData.m_AllPostColor[TempUIPostColorIndex];
         }
-        
+
+        m_BuffTutorialHandDoTweener = m_TutorialHand.DOAnchorPosY(-180.0f, 1.0f).SetEase(Ease.Linear);
+        m_BuffTutorialHandDoTweener.SetLoops(-1, LoopType.Yoyo);
+       
     }
 
     // Start is called before the first frame update
@@ -141,7 +146,7 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         Val *= 2.0f;
 
         Vector3 lTempPosition = m_MoveBar.rectTransform.anchoredPosition;
-        lTempPosition.y = Val * 140.0f;
+        lTempPosition.y = Val * 135.0f;
         m_MoveBar.rectTransform.anchoredPosition = lTempPosition;
     }
 
@@ -183,8 +188,14 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     public void ShowReadyUI(bool show)
     {
         m_ReadyUI.gameObject.SetActive(show);
+        if (!show)
+        {
+            
+            //Tweener lTempTweener = m_TutorialHand.
+            m_BuffTutorialHandDoTweener.Kill();
+        }
 
-
+        m_TutorialHand.gameObject.SetActive(show);
     }
 
     public void ShowGamePlayUI(bool show)
