@@ -21,7 +21,8 @@ public class CJumpStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_MyMovable.transform.DOPause();
         m_MyPlayerMemoryShare.m_MyMovable.transform.DOLocalMoveY(8.0f, 0.5f).SetEase( Ease.Linear);
 
-        Time.timeScale = 0.1f;
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0.1f, 0.5f);
+       // Time.timeScale = 0.1f;
         base.InState();
     }
 
