@@ -92,8 +92,8 @@ public abstract class CPlayerStateBase : CMovableStatePototype
         else
         {
             m_MyPlayerMemoryShare.m_NextDoorPost = lTempDoorPost.NextDoorPost;
-            SetStateStyle(lTempDoorPost.NextData.m_Style);
             ConfirmDoorNextState(lTempDoorPost);
+            SetStateStyle(lTempDoorPost.NextData.m_Style);
             m_MyPlayerMemoryShare.m_BuffDoorInstanceID = lTempDoorPost.gameObject.GetInstanceID();
             lTempDoorPost.TouchOK(m_MyPlayerMemoryShare.m_MyPlayer);
 

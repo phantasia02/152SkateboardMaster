@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 using System;
 
 [System.Serializable]
@@ -72,7 +71,6 @@ public class CDoorPost : CGameObjBas
     }
 
     protected Animator m_AnimatorPost = null;
-    protected Outline m_MyOutline = null;
     protected int m_CurTouch = 0;
     public int CurTouch
     {
@@ -140,6 +138,7 @@ public class CDoorPost : CGameObjBas
 
     public void UpdatePos()
     {
+        m_SpecialPosObj.gameObject.SetActive(false);
         for (int i = 0; i < m_AllPosObj.Length; i++)
             m_AllPosObj[i].SetActive(false);
 

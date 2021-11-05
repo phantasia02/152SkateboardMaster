@@ -332,7 +332,7 @@ public abstract class CMovableBase : CGameObjBas
 
         m_AllState[(int)pamState].index = index;
 
-        if (pamState == CurState)
+        if (pamState == CurState && m_ChangState == StaticGlobalDel.EMovableState.eMax)
         {
             if (CurState != StaticGlobalDel.EMovableState.eNull)
             {
