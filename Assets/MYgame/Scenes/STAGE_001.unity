@@ -32946,6 +32946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Result UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7655301961055858098, guid: 49bb2c5b2c274af44b876498bb8427a9, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bb2c5b2c274af44b876498bb8427a9, type: 3}
 --- !u!224 &1476580778 stripped
