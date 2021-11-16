@@ -19241,6 +19241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 470491259}
     m_Modifications:
+    - target: {fileID: 625071413981457397, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3164491879231258435, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
       propertyPath: outlineMode
       value: 1
@@ -19261,6 +19265,10 @@ PrefabInstance:
       propertyPath: m_CurObjMesh
       value: 
       objectReference: {fileID: 1728392589}
+    - target: {fileID: 3164491880100626720, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
+      propertyPath: m_MyMoveStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3164491880100626720, guid: 5730dd86f78f3d74fbde3b165e1c3496, type: 3}
       propertyPath: m_TouchMaxCount
       value: 1
