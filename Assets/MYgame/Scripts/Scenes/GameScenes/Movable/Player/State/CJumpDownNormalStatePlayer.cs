@@ -13,6 +13,7 @@ public class CJumpDownNormalStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+        Time.timeScale = 1.0f;
     }
 
     protected override void updataState()

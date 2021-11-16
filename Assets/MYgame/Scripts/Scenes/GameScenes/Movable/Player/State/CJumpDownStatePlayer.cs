@@ -15,6 +15,7 @@ public class CJumpDownStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+        Time.timeScale = 1.0f;
         m_MyPlayerMemoryShare.m_MyMovable.SetStateIndex(StaticGlobalDel.EMovableState.eHit, 0);
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
         m_MyPlayerMemoryShare.m_MyRigidbody.AddForce(Vector3.up * 200.0f);
